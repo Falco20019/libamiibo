@@ -54,7 +54,12 @@
     <Compile Include="Data\Figurine\SubCharacter.cs" />
     <Compile Include="Data\Figurine\ToyType.cs" />
     <Compile Include="Data\Settings\AmiiboSettings.cs" />
+    <Compile Include="Data\Settings\TitleID\Variation.cs" />
+    <Compile Include="Data\Settings\TitleID\Category.cs" />
+    <Compile Include="Data\Settings\TitleID\IdRestriction.cs" />
+    <Compile Include="Data\Settings\TitleID\Platform.cs" />
     <Compile Include="Data\Settings\Status.cs" />
+    <Compile Include="Data\Settings\Title.cs" />
     <Compile Include="Helper\NativeHelpers.cs" />
     <Compile Include="Encryption\AmiiboKeys.cs" />
     <Compile Include="Encryption\DrbgCtx.cs" />

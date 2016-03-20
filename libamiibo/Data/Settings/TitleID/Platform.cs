@@ -20,14 +20,14 @@
  * THE SOFTWARE.
  */
 
-using System;
-
-namespace LibAmiibo.Data.Settings
+namespace LibAmiibo.Data.Settings.TitleID
 {
-    [Flags]
-    public enum Status
+    public enum Platform
     {
-        SettingsInitialized = 1 << 4,
-        AppDataInitialized = 1 << 5
+        Unknown = 0,
+        Wii = 1,
+        DSi = 3,
+        N3DS = 4,
+        WiiU = 5
     }
 }

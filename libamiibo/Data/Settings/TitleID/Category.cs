@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (C) 2016 Benjamin Krämer
+/*
+ * Copyright (C) 2016 Benjamin Kr�mer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +22,23 @@
 
 using System;
 
-namespace LibAmiibo.Data.Settings
+namespace LibAmiibo.Data.Settings.TitleID
 {
     [Flags]
-    public enum Status
+    public enum Category
     {
-        SettingsInitialized = 1 << 4,
-        AppDataInitialized = 1 << 5
+        Normal = 0x00,
+        DlpChild = 0x01,
+        Demo = 0x02,
+        Contents = 0x03,
+        AddOnContents = 0x04,
+        Patch = 0x06,
+        CannotExecution = 0x08,
+        System = 0x10,
+        RequireBatchUpdate = 0x20,
+        NotRequireUserApproval = 0x40,
+        NotRequireRightForMount = 0x80,
+        CanSkipConvertJumpId = 0x100,
+        TWL = 0x8000
     }
 }

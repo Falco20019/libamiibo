@@ -22,12 +22,36 @@
 
 using System;
 
-namespace LibAmiibo.Data.Settings
+namespace LibAmiibo.Data.Settings.TitleID
 {
-    [Flags]
-    public enum Status
+    public static class IdRestriction
     {
-        SettingsInitialized = 1 << 4,
-        AppDataInitialized = 1 << 5
+        [Flags]
+        public enum TitleType
+        {
+            Unknown = 0xFF,
+            System = 0x01,
+            Application = 0x02,
+            Evaluation = 0x04,
+            Prototype = 0x08
+        }
+
+        internal static TitleType GetType(ulong id)
+        {
+            TitleType type = 0;
+            if (id >= 0x00000 && id <= 0x002FF)
+                type |= TitleType.System;
+            if (id >= 0x00300 && id <= 0xF7FFF)
+                type |= TitleType.Application;
+            if (id >= 0xF8000 && id <= 0xFFFFF)
+                type |= TitleType.Evaluation;
+            if (id >= 0xFF000 && id <= 0xFF3FF)
+                type |= TitleType.Prototype;
+
+            if (type != 0)
+                return type;
+
+            return TitleType.Unknown;
+        }
     }
 }

@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (C) 2016 Benjamin Krämer
+/*
+ * Copyright (C) 2016 Benjamin Kr�mer
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,12 @@
  * THE SOFTWARE.
  */
 
-using System;
-
-namespace LibAmiibo.Data.Settings
+namespace LibAmiibo.Data.Settings.TitleID
 {
-    [Flags]
-    public enum Status
+    public enum Variation
     {
-        SettingsInitialized = 1 << 4,
-        AppDataInitialized = 1 << 5
+        Normal = 0x00,
+        SystemTitle = 0x02,
+        SafeModeSystemTitle = 0x03
     }
 }
