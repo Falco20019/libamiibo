@@ -45,3 +45,15 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Ignore binaries
+*/obj
+*/bin
+/.vs
+/packages
+
+# Ignore copyrighted files
+/key
+
+# Ignore unsorted data
+/libamiibo/Images/new
