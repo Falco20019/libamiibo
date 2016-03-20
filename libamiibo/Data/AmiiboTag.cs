@@ -38,9 +38,24 @@ namespace LibAmiibo.Data
         public Amiibo Amiibo { get; }
         public AmiiboSettings AmiiboSettings { get; }
         /// <summary>
-        /// Does not work if Counter was tempered. Mabye use Status?
+        /// Only valid if HasAppData returns true.
         /// </summary>
-        public bool IsDecrypted { get; }
+        public byte[] AppData
+        {
+            get
+            {
+                var data = new byte[0xD8];
+                Array.Copy(InternalTag, 0x0B0, data, 0, data.Length);
+                return data;
+            }
+        }
+        public bool IsDecrypted { get; private set; }
+
+        public bool HasAppData
+        {
+            get { return IsDecrypted && AmiiboSettings.Status.HasFlag(Status.AppDataInitialized); }
+        }
+
         public byte[] DataSignature
         {
             get
@@ -116,23 +131,22 @@ namespace LibAmiibo.Data
             this.InternalTag = internalTag;
             this.Amiibo = Amiibo.FromInternalTag(internalTag);
             this.AmiiboSettings = AmiiboSettings.FromCryptoBuffer(CryptoBuffer);
-            this.IsDecrypted = this.WriteCounter == this.AmiiboSettings.WriteCounter;
         }
 
         public static AmiiboTag FromNtagData(byte[] data)
         {
-            return new AmiiboTag(NtagHelpers.GetInternalTag(data));
+            return new AmiiboTag(NtagHelpers.GetInternalTag(data)) { IsDecrypted = false };
         }
 
         public static AmiiboTag FromInternalTag(byte[] data)
         {
-            return new AmiiboTag(data);
+            return new AmiiboTag(data) { IsDecrypted = true };
         }
 
         public static AmiiboTag DecryptWithKeys(AmiiboKeys keys, byte[] data)
         {
             byte[] decryptedData = new byte[NtagHelpers.NFC3D_AMIIBO_SIZE];
-            return keys.Unpack(data, decryptedData) ? FromInternalTag(decryptedData) : FromNtagData(data);
+            return keys != null && keys.Unpack(data, decryptedData) ? FromInternalTag(decryptedData) : FromNtagData(data);
         }
     }
 }
