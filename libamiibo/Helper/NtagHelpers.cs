@@ -68,7 +68,10 @@ namespace LibAmiibo.Helper
 
         public static DateTime DateTimeFromTag(ushort value)
         {
-            return new DateTime(2000 + value & 0x7F00, value & 0x00F0, value & 0x000F);
+            var day = value & 0x1F;
+            var month = (value >> 5) & 0x0F;
+            var year = (value >> 9) & 0x7F;
+            return new DateTime(2000 + year, month, day);
         }
     }
 }
