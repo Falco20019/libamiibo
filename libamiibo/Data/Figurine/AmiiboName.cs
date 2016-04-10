@@ -87,7 +87,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0038,   "Toad" },
             { 0x0039,   "Bowser" },
             { 0x003A,   "Chibi Robo" },
-            //{ 0x003B,   "Wolf Link" },        // TODO: Check if correct
+            // TODO: Something missing here
             { 0x003C,   "Gold Mario" },
             { 0x003D,   "Silver Mario" },
             { 0x003E,   "Inkling Girl" },
@@ -523,7 +523,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x024C,   "Rover (ACF)" },
             { 0x024D,   "Timmy & Tommy (ACF)" },
             { 0x024E,   "Kapp'n (ACF)" },
-            { 0x024F,   "Midna" },
+            { 0x024F,   "Wolf Link & Midna" },
             { 0x0250,   "Shovel Knight" },
             { 0x0251,   "Lucas" },
             { 0x0252,   "Roy" },
