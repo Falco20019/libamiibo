@@ -44,6 +44,8 @@ namespace LibAmiibo.Data.Figurine
             //{ 0x018601, "???" },            // TODO: Some special Tommy
             //{ 0x018C01, "???" },            // TODO: Some special Digby
             //{ 0x018F01, "???" },            // TODO: Some special Resetti
+            //{ 0x01A801, "???" },            // TODO: Some special Redd
+            //{ 0x01B101, "???" },            // TODO: Some special Shrunk
             { 0x05c001, "Zero Suit" },
             { 0x064001, "& Pikmin" },
             { 0x07c000, "Brawler" },
