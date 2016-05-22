@@ -60,6 +60,12 @@
     <Compile Include="Data\Settings\TitleID\Platform.cs" />
     <Compile Include="Data\Settings\Status.cs" />
     <Compile Include="Data\Settings\Title.cs" />
+    <Compile Include="Encryption\CDNKeys.cs" />
+    <Compile Include="Files.cs" />
+    <Compile Include="Helper\CDNUtils.cs" />
+    <Compile Include="Helper\IDBEUtils.cs" />
+    <Compile Include="Helper\ImageUtil.cs" />
+    <Compile Include="Helper\MarshalUtil.cs" />
     <Compile Include="Helper\NativeHelpers.cs" />
     <Compile Include="Encryption\AmiiboKeys.cs" />
     <Compile Include="Encryption\DrbgCtx.cs" />
@@ -72,6 +78,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\AppData\" />
@@ -84,7 +95,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

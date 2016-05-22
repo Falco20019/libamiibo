@@ -29,7 +29,21 @@ namespace LibAmiibo.Data.Settings
     // TODO: Use http://3dsdb.com/ and http://wiiubrew.org/wiki/Title_database to resolve the titles
     public class Title
     {
+        private IDBEContext context = null;
         public byte[] Data { get; private set; }
+
+        public IDBEContext Context
+        {
+            get
+            {
+                if (context == null)
+                {
+                    context = CDNUtils.DownloadTitleData(this);
+                }
+                return context;
+            }
+        }
+
         public Platform Platform
         {
             get { return (Platform)(NtagHelpers.UInt16FromTag(Data, 0x00)); }
@@ -37,6 +51,17 @@ namespace LibAmiibo.Data.Settings
         public Category Category
         {
             get { return (Category)(NtagHelpers.UInt16FromTag(Data, 0x02)); }
+        }
+        public ulong TitleID
+        {
+            get
+            {
+                var data = new byte[0x08];
+                Array.Copy(Data, data, data.Length);
+                if (BitConverter.IsLittleEndian)
+                    Array.Reverse(data);
+                return BitConverter.ToUInt64(data, 0);
+            }
         }
         public uint UniqueID
         {

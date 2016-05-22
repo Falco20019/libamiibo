@@ -143,10 +143,12 @@ namespace LibAmiibo.Data
             return new AmiiboTag(data) { IsDecrypted = true };
         }
 
-        public static AmiiboTag DecryptWithKeys(AmiiboKeys keys, byte[] data)
+        public static AmiiboTag DecryptWithKeys(byte[] data)
         {
             byte[] decryptedData = new byte[NtagHelpers.NFC3D_AMIIBO_SIZE];
-            return keys != null && keys.Unpack(data, decryptedData) ? FromInternalTag(decryptedData) : FromNtagData(data);
+            var amiiboKeys = Files.AmiiboKeys;
+
+            return amiiboKeys != null && amiiboKeys.Unpack(data, decryptedData) ? FromInternalTag(decryptedData) : FromNtagData(data);
         }
     }
 }

@@ -5,6 +5,12 @@ namespace LibAmiibo.Helper
     public static class NtagHelpers
     {
         public const int NFC3D_AMIIBO_SIZE = 520;
+        public static readonly byte[] CONFIG_BYTES =
+        {
+            0x01, 0x00, 0x0F, 0xBD,     // Dynamic lock bytes
+            0x00, 0x00, 0x00, 0x04,     // CFG0
+            0x5F, 0x00, 0x00, 0x00      // CFG1
+        };
 
         public static byte[] GetInternalTag(byte[] tag)
         {
@@ -37,6 +43,7 @@ namespace LibAmiibo.Helper
             Array.Copy(intl, 0x1B4, tag, 0x034, 0x020);
             Array.Copy(intl, 0x1D4, tag, 0x000, 0x008);
             Array.Copy(intl, 0x1DC, tag, 0x054, 0x02C);
+            Array.Copy(CONFIG_BYTES, 0x000, tag, 0x208, 0x00C);
         }
 
         public static ushort UInt16FromTag(byte[] buffer, int offset)
