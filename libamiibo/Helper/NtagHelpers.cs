@@ -5,6 +5,8 @@ namespace LibAmiibo.Helper
     public static class NtagHelpers
     {
         public const int NFC3D_AMIIBO_SIZE = 520;
+        public const int NFC3D_NTAG_SIZE = 540;
+
         public static readonly byte[] CONFIG_BYTES =
         {
             0x01, 0x00, 0x0F, 0xBD,     // Dynamic lock bytes
