@@ -45,7 +45,7 @@ namespace LibAmiibo.Data
             get
             {
                 var data = new byte[0xD8];
-                Array.Copy(InternalTag, 0x0B0, data, 0, data.Length);
+                Array.Copy(InternalTag, 0x0DC, data, 0, data.Length);
                 return data;
             }
         }
