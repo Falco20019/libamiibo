@@ -36,9 +36,11 @@ namespace LibAmiibo.Data.Figurine
             { 0x05,	 "Animal Crossing" },
             { 0x06,	 "8-bit Mario" },
             { 0x07,  "Skylanders" },
-            //{ 0xXX,  "Kirby" },
+            // Missing
             { 0x09,  "Twilight Princess" },
             { 0x0A,  "Shovel Knight" },
+            // Missing
+            { 0x0C,  "Kirby" },
             { 0x0D,  "Pokken" },
             { 0xFF,  "(empty)" },
         };

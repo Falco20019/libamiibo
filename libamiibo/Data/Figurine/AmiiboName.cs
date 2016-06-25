@@ -500,6 +500,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x01D5,   "Goldie (ACCP)" },
             { 0x01D6,   "Stitches (ACCP)" },
             { 0x01D7,   "Rosie (ACCP)" },
+            { 0x01D8,   "K. K. Slider (ACCP)" },
             // TODO: Update ACCP
             { 0x0238,   "Mario (Classic)" },
             { 0x0239,   "Mario (Modern)" },
@@ -528,7 +529,10 @@ namespace LibAmiibo.Data.Figurine
             { 0x0251,   "Lucas" },
             { 0x0252,   "Roy" },
             { 0x0253,   "Ryu" },
-            // TODO: More unknown
+            { 0x0254,   "Kirby (KIR)" },
+            { 0x0255,   "Meta Knight (KIR)" },
+            { 0x0256,   "King Dedede (KIR)" },
+            { 0x0257,   "Waddle Dee (KIR)" },
             { 0x0258,   "Mega Man (Gold)" },
             // TODO: More unknown
             { 0x025C, "Mewtwo, Shadow" },

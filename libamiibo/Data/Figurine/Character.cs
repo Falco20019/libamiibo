@@ -385,12 +385,13 @@ namespace LibAmiibo.Data.Figurine
             { 0x1f00,   "Kirby" },
             { 0x1f01,   "Meta Knight" },
             { 0x1f02,   "King Dedede" },
+            { 0x1f03,   "Waddle Dee" },
             { 0x2100,   "Marth" },
             { 0x2101,   "Ike" },
             { 0x2102,   "Lucina" },
             { 0x2103,   "Robin" },
             { 0x2104,   "Roy" },
-            //{ 0x2105,   "Corrin" },        // TODO: Check lists
+            { 0x2105,   "Corrin" },        // TODO: Check lists
             { 0x2240,   "Shulk" },
             { 0x2280,   "Ness" },
             { 0x2281,   "Lucas" },
@@ -398,7 +399,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x3200,   "Sonic" },
             { 0x3340,   "PAC-MAN" },
             { 0x3480,   "Mega Man" },
-            { 0x34C0,   "Ryu" },              // TODO: Check lists
+            { 0x34C0,   "Ryu" },
             { 0x35C0,   "Shovel Knight" },
             //{ 0x3840,   "Cloud Strife" },     // TODO: Check lists
             //{ 0x3980,   "Bayonetta" },        // TODO: Check lists

@@ -40,7 +40,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x078,    "Classic Nintendo" },
             { 0x07c,    "Mii" },
             { 0x080,    "Splatoon" },
-            { 0x1D0,    "Pokken (?)" },
+            { 0x1D0,    "Pokken" },
             { 0x1F0,    "Kirby" },
             { 0x210,    "Fire Emblem" },
             { 0x224,    "Xenoblade Chronicles" },
@@ -53,6 +53,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x35C,    "Shovel Knight" },
             //{ 0xXXX,    "Final Fantasy" },
             //{ 0xXXX,    "Bayonetta" },
+            //{ 0xXXX,    "Monster Hunter" },
             { 0xFFF,    "(empty)" },
         };
 

@@ -38,14 +38,19 @@ namespace LibAmiibo.Data.Figurine
             { 0x010201, "-dorf" },
             { 0x018101, "Winter" },
             { 0x018102, "Festival" },
+            { 0x018103, "Sommer" },
             { 0x018201, "DJ" },
             //{ 0x018301, "???" },            // TODO: Some special Tom Nook
             //{ 0x018502, "???" },            // TODO: Some special Timmy
+            //{ 0x018504, "???" },            // TODO: Some special Timmy
             //{ 0x018601, "???" },            // TODO: Some special Tommy
+            //{ 0x018603, "???" },            // TODO: Some special Tommy
             //{ 0x018C01, "???" },            // TODO: Some special Digby
-            //{ 0x018F01, "???" },            // TODO: Some special Resetti
+            //{ 0x018E01, "???" },            // TODO: Some special Resetti
+            //{ 0x018F01, "???" },            // TODO: Some special Don Resetti
             //{ 0x01A801, "???" },            // TODO: Some special Redd
             //{ 0x01B101, "???" },            // TODO: Some special Shrunk
+            //{ 0x01C101, "???" },            // TODO: Some special Lottie
             { 0x05c001, "Zero Suit" },
             { 0x064001, "& Pikmin" },
             { 0x07c000, "Brawler" },
