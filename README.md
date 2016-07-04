@@ -4,7 +4,7 @@ amiibo™ parsing library
 
 Usage
 =====
-**libamiibo expects a binary dump. It will not work with XMLs or hexadecimal text files**. 
+**libamiibo expects a binary dump. It will not work with XMLs or hexadecimal text files**.  See the unix program `xxd` to convert from hexadecimal to binary.
 
 It offers support for encryption/decryption, figurine data, amiibo settings and AppData.
 
