@@ -4903,6 +4903,16 @@ namespace LibAmiibo.Images {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icon_08000100025f0402 {
+            get {
+                object obj = ResourceManager.GetObject("icon_08000100025f0402", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icon_08000200003f0402 {
             get {
                 object obj = ResourceManager.GetObject("icon_08000200003f0402", resourceCulture);
@@ -4913,9 +4923,49 @@ namespace LibAmiibo.Images {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icon_0800020002600402 {
+            get {
+                object obj = ResourceManager.GetObject("icon_0800020002600402", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icon_0800030000400402 {
             get {
                 object obj = ResourceManager.GetObject("icon_0800030000400402", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icon_0800030002610402 {
+            get {
+                object obj = ResourceManager.GetObject("icon_0800030002610402", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icon_08010000025d0402 {
+            get {
+                object obj = ResourceManager.GetObject("icon_08010000025d0402", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icon_08020000025e0402 {
+            get {
+                object obj = ResourceManager.GetObject("icon_08020000025e0402", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
