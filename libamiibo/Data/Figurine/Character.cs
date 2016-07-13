@@ -375,6 +375,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x0782,   "Duck Hunt" },
             { 0x07c0,   "Mii" },
             { 0x0800,   "Inkling" },
+            { 0x0801,   "Callie" },
+            { 0x0802,   "Marie" },
             { 0x1906,   "Charizard" },
             { 0x1919,   "Pikachu" },
             { 0x1927,   "Jigglypuff" },
