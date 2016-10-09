@@ -95,11 +95,6 @@ namespace LibAmiibo.Helper
         public abstract string FirstTitle(Localization localization);
         public abstract string SecondTitle(Localization localization);
         public abstract string Publisher(Localization localization);
-
-        protected string CleanInput(string input)
-        {
-            return input.TrimEnd('\0').Replace("\n", " ");
-        }
     }
 
     public class IDBE3DSContext : IDBEContext
@@ -108,15 +103,15 @@ namespace LibAmiibo.Helper
 
         public override string FirstTitle(Localization localization)
         {
-            return CleanInput(Encoding.Unicode.GetString(this.Header.Descriptions[(int)localization].FirstTitle));
+            return MarshalUtil.CleanInput(Encoding.Unicode.GetString(this.Header.Descriptions[(int)localization].FirstTitle));
         }
         public override string SecondTitle(Localization localization)
         {
-            return CleanInput(Encoding.Unicode.GetString(this.Header.Descriptions[(int)localization].SecondTitle));
+            return MarshalUtil.CleanInput(Encoding.Unicode.GetString(this.Header.Descriptions[(int)localization].SecondTitle));
         }
         public override string Publisher(Localization localization)
         {
-            return CleanInput(Encoding.Unicode.GetString(this.Header.Descriptions[(int)localization].Publisher));
+            return MarshalUtil.CleanInput(Encoding.Unicode.GetString(this.Header.Descriptions[(int)localization].Publisher));
         }
 
         public bool Open(Stream fs)
@@ -134,15 +129,15 @@ namespace LibAmiibo.Helper
 
         public override string FirstTitle(Localization localization)
         {
-            return CleanInput(Encoding.BigEndianUnicode.GetString(this.Header.Descriptions[(int)localization].FirstTitle));
+            return MarshalUtil.CleanInput(Encoding.BigEndianUnicode.GetString(this.Header.Descriptions[(int)localization].FirstTitle));
         }
         public override string SecondTitle(Localization localization)
         {
-            return CleanInput(Encoding.BigEndianUnicode.GetString(this.Header.Descriptions[(int)localization].SecondTitle));
+            return MarshalUtil.CleanInput(Encoding.BigEndianUnicode.GetString(this.Header.Descriptions[(int)localization].SecondTitle));
         }
         public override string Publisher(Localization localization)
         {
-            return CleanInput(Encoding.BigEndianUnicode.GetString(this.Header.Descriptions[(int)localization].Publisher));
+            return MarshalUtil.CleanInput(Encoding.BigEndianUnicode.GetString(this.Header.Descriptions[(int)localization].Publisher));
         }
 
         public bool Open(Stream fs)

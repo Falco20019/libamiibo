@@ -84,7 +84,7 @@ namespace LibAmiibo.Data.Settings
 
         public string AmiiboNickname
         {
-            get { return Encoding.BigEndianUnicode.GetString(CryptoBuffer, 0x0C, 0x14); }
+            get { return MarshalUtil.CleanInput(Encoding.BigEndianUnicode.GetString(CryptoBuffer, 0x0C, 0x14)); }
         }
 
         public byte[] OwnerMii

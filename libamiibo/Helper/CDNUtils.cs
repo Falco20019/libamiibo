@@ -25,6 +25,7 @@ using System.Linq;
 using System.Net;
 using LibAmiibo.Data.Settings;
 using LibAmiibo.Data.Settings.TitleID;
+using LibAmiibo.Properties;
 
 namespace LibAmiibo.Helper
 {
@@ -36,11 +37,11 @@ namespace LibAmiibo.Helper
             ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => Equals("B48ECF5C04B9CBB18D6215D0AD51DAA113929DE8", certificate.GetCertHashString());
         }
 
-		public static IDBEContext DownloadTitleData(Title title)
+        public static byte[] DownloadTitleDataStream(Title title)
         {
             var cdnKeys = Files.CDNKeys;
-		    if (cdnKeys == null)
-		        return null;
+            if (cdnKeys == null)
+                return null;
 
             string titleId = title.TitleID.ToString("X16").ToUpper();
 
@@ -51,7 +52,7 @@ namespace LibAmiibo.Helper
                 metadataUrl = $"https://idbe-wup.cdn.nintendo.net/icondata/{10}/{titleId}.idbe";
             else return null;
 
-			byte[] data;
+            byte[] data;
             try
             {
                 using (var webClient = new WebClient())
@@ -65,8 +66,37 @@ namespace LibAmiibo.Helper
             }
 
             var dataSkip2 = data.Skip(2).ToArray();
-			var keyslot = data[1];
-		    var iconData = cdnKeys.DecryptIcon(dataSkip2, keyslot);
+            var keyslot = data[1];
+            var iconData = cdnKeys.DecryptIcon(dataSkip2, keyslot);
+
+            return iconData;
+        }
+
+        private static byte[] GetCachedStreamData(Title title)
+        {
+            var titleId = title.TitleID.ToString("X16").ToUpper();
+            var cacheFileName = Path.Combine(Settings.Default.TitleCacheDir, titleId);
+            if (File.Exists(cacheFileName))
+            {
+                try
+                {
+                    return File.ReadAllBytes(cacheFileName);
+                }
+                catch { }
+            }
+
+            byte[] streamData = DownloadTitleDataStream(title);
+            if (streamData != null)
+                File.WriteAllBytes(cacheFileName, streamData);
+
+            return streamData;
+        }
+
+        public static IDBEContext DownloadTitleData(Title title)
+        {
+            byte[] iconData = GetCachedStreamData(title);
+            if (iconData == null)
+                return null;
 
             if (title.Platform == Platform.WiiU)
 		    {
@@ -90,5 +120,5 @@ namespace LibAmiibo.Helper
 
 		    return null;
         }
-	}
+    }
 }

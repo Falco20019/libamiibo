@@ -8,5 +8,8 @@
     <Setting Name="CDNKeys" Type="System.String" Scope="Application">
       <Value Profile="(Default)">C:\xampp\htdocs\amiitool\key\cdn_keys.bin</Value>
     </Setting>
+    <Setting Name="TitleCacheDir" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\xampp\htdocs\amiitool\titles</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

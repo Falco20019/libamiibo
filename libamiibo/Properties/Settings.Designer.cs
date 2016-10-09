@@ -40,5 +40,14 @@ namespace LibAmiibo.Properties {
                 return ((string)(this["CDNKeys"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\xampp\\htdocs\\amiitool\\titles")]
+        public string TitleCacheDir {
+            get {
+                return ((string)(this["TitleCacheDir"]));
+            }
+        }
     }
 }

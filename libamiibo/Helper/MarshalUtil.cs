@@ -29,6 +29,12 @@ namespace LibAmiibo.Helper
 {
     static class MarshalUtil
     {
+        public static string CleanInput(string input)
+        {
+            input = input.Replace('\n', ' ');
+            return input.Remove(input.IndexOf('\0'));
+        }
+
         public static T ReadStruct<T>(Stream fs)
         {
             var buffer = new byte[Marshal.SizeOf(typeof(T))];
