@@ -39,6 +39,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0008,   "Donkey Kong" },
             { 0x0009,   "Diddy Kong" },
             { 0x000a,   "Toad" },
+            { 0x0017,   "Boo" },
             { 0x0100,   "Link" },
             { 0x0101,   "Zelda" },
             { 0x0102,   "Ganon" },

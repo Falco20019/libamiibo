@@ -28,7 +28,6 @@ namespace LibAmiibo.Data.Figurine
     {
         private static Dictionary<int, string> dict = new Dictionary<int, string>
         {
-            { 0x000,    "Super Mario" },
             { 0x010,    "Legend of Zelda" },
             { 0x058,    "Star Fox" },
             { 0x05C,    "Metroid" },
@@ -62,6 +61,8 @@ namespace LibAmiibo.Data.Figurine
             string name;
             if (dict.TryGetValue(id, out name))
                 return name;
+            if (id >= 0x000 && id <= 0x001)
+                return "Super Mario";
             if (id >= 0x018 && id <= 0x051)
                 return "Animal Crossing";
             if (id >= 0x190 && id <= 0x1BD)

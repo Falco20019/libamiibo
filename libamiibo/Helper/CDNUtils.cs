@@ -26,6 +26,7 @@ using System.Net;
 using LibAmiibo.Data.Settings;
 using LibAmiibo.Data.Settings.TitleID;
 using LibAmiibo.Properties;
+using System;
 
 namespace LibAmiibo.Helper
 {
@@ -41,7 +42,10 @@ namespace LibAmiibo.Helper
         {
             var cdnKeys = Files.CDNKeys;
             if (cdnKeys == null)
+            {
+                Console.Error.WriteLine("CDNKeys missing");
                 return null;
+            }
 
             string titleId = title.TitleID.ToString("X16").ToUpper();
 
@@ -50,7 +54,11 @@ namespace LibAmiibo.Helper
                 metadataUrl = $"https://idbe-ctr.cdn.nintendo.net/icondata/{10}/{titleId}.idbe";
             else if (title.Platform == Platform.WiiU)
                 metadataUrl = $"https://idbe-wup.cdn.nintendo.net/icondata/{10}/{titleId}.idbe";
-            else return null;
+            else
+            {
+                Console.Error.WriteLine("Wrong platform");
+                return null;
+            }
 
             byte[] data;
             try
@@ -62,6 +70,7 @@ namespace LibAmiibo.Helper
             }
             catch (WebException ex)
             {
+                Console.Error.WriteLine("Problem downloading the data: " + ex.Message);
                 return null;
             }
 

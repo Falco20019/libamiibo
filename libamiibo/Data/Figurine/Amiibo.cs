@@ -36,8 +36,33 @@ namespace LibAmiibo.Data.Figurine
         {
             get { return "icon_"; }
         }
-
         public string StatueId { get; private set; }
+        public bool IsDataComplete
+        {
+            get
+            {
+                return StatueNameInternal != null
+                    && GameSeriesNameInternal != null
+                    && CharacterNameInternal != null
+                    && SubCharacterNameInternal != null
+                    && ToyTypeNameInternal != null
+                    && AmiiboSetNameInternal != null;
+            }
+        }
+        internal string StatueNameInternal
+        {
+            get
+            {
+                return AmiiboName.GetName(AmiiboNo);
+            }
+        }
+        public string StatueName
+        {
+            get
+            {
+                return StatueNameInternal ?? "Unknown " + AmiiboNo;
+            }
+        }
         public int GameSeriesId
         {
             get
@@ -45,11 +70,18 @@ namespace LibAmiibo.Data.Figurine
                 return int.Parse(StatueId.Substring(0, 3), System.Globalization.NumberStyles.HexNumber);
             }
         }
+        internal string GameSeriesNameInternal
+        {
+            get
+            {
+                return GameSeries.GetName(GameSeriesId);
+            }
+        }
         public string GameSeriesName
         {
             get
             {
-                return GameSeries.GetName(GameSeriesId) ?? "Unknown " + GameSeriesId;
+                return GameSeriesNameInternal ?? "Unknown " + GameSeriesId;
             }
         }
         public byte CharacterNumberInGameSeries
@@ -66,11 +98,18 @@ namespace LibAmiibo.Data.Figurine
                 return int.Parse(StatueId.Substring(0, 4), System.Globalization.NumberStyles.HexNumber);
             }
         }
+        internal string CharacterNameInternal
+        {
+            get
+            {
+                return Character.GetName(CharacterId);
+            }
+        }
         public string CharacterName
         {
             get
             {
-                return Character.GetName(CharacterId) ?? "Unknown " + CharacterId;
+                return CharacterNameInternal ?? "Unknown " + CharacterId;
             }
         }
         public byte CharacterVariant
@@ -87,12 +126,19 @@ namespace LibAmiibo.Data.Figurine
                 return long.Parse(StatueId.Substring(0, 6), System.Globalization.NumberStyles.HexNumber);
             }
         }
-        public string SubCharacterName
+        internal string SubCharacterNameInternal
         {
             get
             {
                 if (CharacterVariant == 0x00) return "Regular";
-                return SubCharacter.GetName(SubCharacterId) ?? "Unknown " + SubCharacterId;
+                return SubCharacter.GetName(SubCharacterId);
+            }
+        }
+        public string SubCharacterName
+        {
+            get
+            {
+                return SubCharacterNameInternal ?? "Unknown " + SubCharacterId;
             }
         }
         public byte ToyTypeId
@@ -102,11 +148,18 @@ namespace LibAmiibo.Data.Figurine
                 return byte.Parse(StatueId.Substring(6, 2), System.Globalization.NumberStyles.HexNumber);
             }
         }
+        internal string ToyTypeNameInternal
+        {
+            get
+            {
+                return ToyType.GetName(ToyTypeId);
+            }
+        }
         public string ToyTypeName
         {
             get
             {
-                return ToyType.GetName(ToyTypeId) ?? "Unknown " + ToyTypeId;
+                return ToyTypeNameInternal ?? "Unknown " + ToyTypeId;
             }
         }
         public int AmiiboNo
@@ -121,24 +174,21 @@ namespace LibAmiibo.Data.Figurine
             get
             {
                 // If known, use retail name:
-                string retailName = AmiiboName.GetName(AmiiboNo);
+                string retailName = StatueNameInternal;
                 if (retailName != null && (AmiiboNo != 0 || CharacterId == 0))
                     return retailName;
 
                 // Always use the characters name if known, or it's number in the series:
-                string character = Character.GetName(CharacterId);
-                retailName = character ?? "Char#" + CharacterNumberInGameSeries;
+                retailName = CharacterNameInternal ?? "Char#" + CharacterNumberInGameSeries;
 
                 // Add the game series name (or id if unknown):
-                string gameSeries = GameSeries.GetName(GameSeriesId);
-                retailName += " (" + gameSeries ?? "series " + GameSeriesId;
+                retailName += " (" + GameSeriesNameInternal ?? "series " + GameSeriesId;
 
                 // Only add the variant if not the standard one:
                 if (CharacterVariant > 0)
                 {
                     // Try to get the subcharacter name or use it's number instead
-                    string subCharacter = SubCharacter.GetName(SubCharacterId);
-                    retailName += ", " + subCharacter ?? "variant " + CharacterVariant;
+                    retailName += ", " + SubCharacterNameInternal ?? "variant " + CharacterVariant;
                 }
                 retailName += ")";
 
@@ -152,14 +202,20 @@ namespace LibAmiibo.Data.Figurine
                 return byte.Parse(StatueId.Substring(12, 2), System.Globalization.NumberStyles.HexNumber);
             }
         }
+        public string AmiiboSetNameInternal
+        {
+            get
+            {
+                return AmiiboSet.GetName(AmiiboSetId);
+            }
+        }
         public string AmiiboSetName
         {
             get
             {
-                return AmiiboSet.GetName(AmiiboSetId) ?? "Unknown " + AmiiboSetId;
+                return AmiiboSetNameInternal ?? "Unknown " + AmiiboSetId;
             }
         }
-
         public Image AmiiboImage
         {
             get
@@ -167,9 +223,11 @@ namespace LibAmiibo.Data.Figurine
                 if (amiiboImage != null)
                     return amiiboImage;
 
-                amiiboImage = Images.Resources.empty;
-                if (AmiiboNo == 0xFFFF)
+                if (AmiiboNo == 0xFFFF || StatueNameInternal == null)
+                {
+                    amiiboImage = Images.Resources.empty;
                     return amiiboImage;
+                }
 
                 try
                 {
@@ -193,13 +251,17 @@ namespace LibAmiibo.Data.Figurine
                             amiiboImage = image;
                             break;
                         }
-                        if (amiiboImage == Images.Resources.empty && icon.CharacterId == CharacterId)
+                        if (amiiboImage == null && icon.CharacterId == CharacterId)
                             amiiboImage = image;
                     }
                 }
                 catch
                 {
                 }
+
+                if (amiiboImage == null)
+                    amiiboImage = Images.Resources.empty;
+
                 return amiiboImage;
             }
         }

@@ -21,6 +21,7 @@
  * THE SOFTWARE.
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -51,7 +52,10 @@ namespace LibAmiibo.Encryption
         public static CDNKeys LoadKeys(string path)
         {
             if (!File.Exists(path))
+            {
+                Console.Error.WriteLine("CDN path does not exist: " + path);
                 return null;
+            }
 
             try
             {
@@ -60,13 +64,17 @@ namespace LibAmiibo.Encryption
                     var result = CDNKeys.Unserialize(reader);
 
                     if (result.aesKeys.Count < 4)
+                    {
+                        Console.Error.WriteLine("AES count missmatch");
                         return null;
+                    }
 
                     return result;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                Console.Error.WriteLine("A problem occured reading the cdn keys: " + ex.Message);
                 return null;
             }
         }
