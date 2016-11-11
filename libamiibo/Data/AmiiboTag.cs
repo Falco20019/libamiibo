@@ -110,9 +110,18 @@ namespace LibAmiibo.Data
         {
             get
             {
-                var data = new byte[0x004];
+                var data = new byte[0x008];
                 Array.Copy(InternalTag, 0x1D4, data, 0, data.Length);
                 return data;
+            }
+        }
+
+        public string UID
+        {
+            get
+            {
+                byte[] ntagSerial = this.NtagSerial;
+                return String.Format("{0:X2} {1:X2} {2:X2} {3:X2} {4:X2} {5:X2} {6:X2}", ntagSerial[0], ntagSerial[1], ntagSerial[2], ntagSerial[4], ntagSerial[5], ntagSerial[6], ntagSerial[7]);
             }
         }
 
