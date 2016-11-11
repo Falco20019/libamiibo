@@ -25,7 +25,8 @@ namespace LibAmiibo.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\xampp\\htdocs\\amiitool\\key\\amiibo_key_retail.bin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/var/www/vhosts/amiibo.alien-scripts.de/httpdocs/App_Data/key/amiibo_key_retail.b" +
+            "in")]
         public string AmiiboKeys {
             get {
                 return ((string)(this["AmiiboKeys"]));
@@ -34,7 +35,7 @@ namespace LibAmiibo.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\xampp\\htdocs\\amiitool\\key\\cdn_keys.bin")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/var/www/vhosts/amiibo.alien-scripts.de/httpdocs/App_Data/key/cdn_keys.bin")]
         public string CDNKeys {
             get {
                 return ((string)(this["CDNKeys"]));
@@ -43,7 +44,7 @@ namespace LibAmiibo.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\xampp\\htdocs\\amiitool\\titles")]
+        [global::System.Configuration.DefaultSettingValueAttribute("/var/www/vhosts/amiibo.alien-scripts.de/httpdocs/App_Data/titles")]
         public string TitleCacheDir {
             get {
                 return ((string)(this["TitleCacheDir"]));

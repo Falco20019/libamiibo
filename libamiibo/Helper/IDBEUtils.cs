@@ -125,7 +125,7 @@ namespace LibAmiibo.Helper
 
     public class IDBEWiiUContext : IDBEContext
     {
-        public byte[] Image;
+        public Bitmap Image;
 
         public override string FirstTitle(Localization localization)
         {
@@ -143,9 +143,18 @@ namespace LibAmiibo.Helper
         public bool Open(Stream fs)
         {
             Header = MarshalUtil.ReadStructBE<IDBEHeader>(fs);
-            Image = new byte[fs.Length - fs.Position];
-            fs.Read(Image, 0, Image.Length);
+            Image = LoadImage(fs);
             return true;
+        }
+
+        private Bitmap LoadImage(Stream fs)
+        {
+            var data = new byte[fs.Length - fs.Position];
+            fs.Read(data, 0, data.Length);
+            using (MemoryStream ms = new MemoryStream(data))
+            {
+                return Paloma.TargaImage.LoadTargaImage(ms);
+            }
         }
     }
 }

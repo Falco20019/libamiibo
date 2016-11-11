@@ -32,7 +32,10 @@ namespace LibAmiibo.Helper
         public static string CleanInput(string input)
         {
             input = input.Replace('\n', ' ');
-            return input.Remove(input.IndexOf('\0'));
+            var end = input.IndexOf('\0');
+            if (end == -1)
+                return input;
+            return input.Remove(end);
         }
 
         public static T ReadStruct<T>(Stream fs)
