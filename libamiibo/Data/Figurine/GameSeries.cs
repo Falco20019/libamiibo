@@ -20,53 +20,54 @@
  * THE SOFTWARE.
  */
 
+using LibAmiibo.Helper;
 using System.Collections.Generic;
 
 namespace LibAmiibo.Data.Figurine
 {
     public static class GameSeries
     {
-        private static Dictionary<int, string> dict = new Dictionary<int, string>
+        private static Dictionary<int, GroupName> dict = new Dictionary<int, GroupName>
         {
-            { 0x010,    "Legend of Zelda" },
-            { 0x058,    "Star Fox" },
-            { 0x05C,    "Metroid" },
-            { 0x060,    "F-Zero" },
-            { 0x064,    "Pikmin" },
-            { 0x06C,    "Punch-Out!!" },
-            { 0x070,    "Wii Fit" },
-            { 0x074,    "Kid Icarus" },
-            { 0x078,    "Classic Nintendo" },
-            { 0x07c,    "Mii" },
-            { 0x080,    "Splatoon" },
-            { 0x1D0,    "Pokken" },
-            { 0x1F0,    "Kirby" },
-            { 0x210,    "Fire Emblem" },
-            { 0x224,    "Xenoblade Chronicles" },
-            { 0x228,    "Earthbound" },
-            { 0x22c,    "Chibi-Robo!" },
-            { 0x320,    "Sonic the Hedgehog" },
-            { 0x334,    "PAC-MAN" },
-            { 0x348,    "Mega Man" },
-            { 0x34C,    "Street Fighter" },
-            { 0x35C,    "Shovel Knight" },
-            //{ 0xXXX,    "Final Fantasy" },
-            //{ 0xXXX,    "Bayonetta" },
-            //{ 0xXXX,    "Monster Hunter" },
-            { 0xFFF,    "(empty)" },
+            { 0x010,    new GroupName("Legend of Zelda", "LOZ") },
+            { 0x058,    new GroupName("Star Fox", "STF") },
+            { 0x05C,    new GroupName("Metroid", "MET") },
+            { 0x060,    new GroupName("F-Zero", "FZO") },
+            { 0x064,    new GroupName("Pikmin", "PIK") },
+            { 0x06C,    new GroupName("Punch-Out!!", "PUO") },
+            { 0x070,    new GroupName("Wii Fit", "WIF") },
+            { 0x074,    new GroupName("Kid Icarus", "KIC") },
+            { 0x078,    new GroupName("Classic Nintendo", "CLN") },
+            { 0x07c,    new GroupName("Mii", "MII") },
+            { 0x080,    new GroupName("Splatoon", "SPL") },
+            { 0x1D0,    new GroupName("Pokken", "POK") },
+            { 0x1F0,    new GroupName("Kirby", "KIR") },
+            { 0x210,    new GroupName("Fire Emblem", "FEM") },
+            { 0x224,    new GroupName("Xenoblade Chronicles", "XCH") },
+            { 0x228,    new GroupName("Earthbound", "EBO") },
+            { 0x22c,    new GroupName("Chibi-Robo!", "CHI") },
+            { 0x320,    new GroupName("Sonic the Hedgehog", "STH") },
+            { 0x334,    new GroupName("PAC-MAN", "PAC") },
+            { 0x348,    new GroupName("Mega Man", "MMA") },
+            { 0x34C,    new GroupName("Street Fighter", "SFI") },
+            { 0x35C,    new GroupName("Shovel Knight", "SHK") },
+            //{ 0xXXX,    new GroupName("Final Fantasy", "FFA") },
+            //{ 0xXXX,    new GroupName("Bayonetta", "BAY") },
+            //{ 0xXXX,    new GroupName("Monster Hunter", "MHU") },
+            { 0xFFF,    new GroupName("(empty)", "?") },
         };
 
-        internal static string GetName(int id)
+        internal static GroupName GetName(int id)
         {
-            string name;
+            GroupName name;
             if (dict.TryGetValue(id, out name))
                 return name;
             if (id >= 0x000 && id <= 0x001)
-                return "Super Mario";
+                return new GroupName("Super Mario", "SMA");
             if (id >= 0x018 && id <= 0x051)
-                return "Animal Crossing";
+                return new GroupName("Animal Crossing", "ACR");
             if (id >= 0x190 && id <= 0x1BD)
-                return "Pokémon";
+                return new GroupName("Pokémon", "POK");
 
             return null;
         }

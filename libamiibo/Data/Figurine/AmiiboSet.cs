@@ -20,34 +20,35 @@
  * THE SOFTWARE.
  */
 
+using LibAmiibo.Helper;
 using System.Collections.Generic;
 
 namespace LibAmiibo.Data.Figurine
 {
     public static class AmiiboSet
     {
-        private static Dictionary<byte, string> dict = new Dictionary<byte, string>
+        private static Dictionary<byte, GroupName> dict = new Dictionary<byte, GroupName>
         {
-            { 0x00,  "Super Smash Bros." },
-            { 0x01,	 "Super Mario Bros." },
-            { 0x02,	 "Chibi-Robo!" },
-            { 0x03,	 "Yoshi's Wooly World" },
-            { 0x04,	 "Splatoon" },
-            { 0x05,	 "Animal Crossing" },
-            { 0x06,	 "8-bit Mario" },
-            { 0x07,  "Skylanders" },
+            { 0x00, new GroupName("Super Smash Bros.", "SSB") },
+            { 0x01, new GroupName("Super Mario Bros.", "SMB") },
+            { 0x02, new GroupName("Chibi-Robo!", "CHI") },
+            { 0x03, new GroupName("Yoshi's Wooly World", "YWW") },
+            { 0x04, new GroupName("Splatoon", "SPL") },
+            { 0x05, new GroupName("Animal Crossing", "AC") },
+            { 0x06, new GroupName("8-bit Mario", "8BT") },
+            { 0x07, new GroupName("Skylanders", "SKY") },
             // Missing
-            { 0x09,  "Twilight Princess" },
-            { 0x0A,  "Shovel Knight" },
+            { 0x09, new GroupName("Twilight Princess", "ZTP") },
+            { 0x0A, new GroupName("Shovel Knight", "SHK") },
             // Missing
-            { 0x0C,  "Kirby" },
-            { 0x0D,  "Pokken" },
-            { 0xFF,  "(empty)" },
+            { 0x0C, new GroupName("Kirby", "KIR") },
+            { 0x0D, new GroupName("Pokken", "POK") },
+            { 0xFF, new GroupName("(empty)", "?") },
         };
 
-        internal static string GetName(byte id)
+        internal static GroupName GetName(byte id)
         {
-            string name;
+            GroupName name;
             if (dict.TryGetValue(id, out name))
                 return name;
 

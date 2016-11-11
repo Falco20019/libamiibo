@@ -20,6 +20,7 @@
  * THE SOFTWARE.
  */
 
+using LibAmiibo.Helper;
 using System;
 using System.Collections;
 using System.Drawing;
@@ -70,7 +71,7 @@ namespace LibAmiibo.Data.Figurine
                 return int.Parse(StatueId.Substring(0, 3), System.Globalization.NumberStyles.HexNumber);
             }
         }
-        internal string GameSeriesNameInternal
+        internal GroupName GameSeriesNameInternal
         {
             get
             {
@@ -81,7 +82,14 @@ namespace LibAmiibo.Data.Figurine
         {
             get
             {
-                return GameSeriesNameInternal ?? "Unknown " + GameSeriesId;
+                return GameSeriesNameInternal?.FullName ?? "Unknown " + GameSeriesId;
+            }
+        }
+        public string GameSeriesShortName
+        {
+            get
+            {
+                return GameSeriesNameInternal?.ShortName ?? "UNK";
             }
         }
         public byte CharacterNumberInGameSeries
@@ -202,7 +210,7 @@ namespace LibAmiibo.Data.Figurine
                 return byte.Parse(StatueId.Substring(12, 2), System.Globalization.NumberStyles.HexNumber);
             }
         }
-        public string AmiiboSetNameInternal
+        public GroupName AmiiboSetNameInternal
         {
             get
             {
@@ -213,7 +221,14 @@ namespace LibAmiibo.Data.Figurine
         {
             get
             {
-                return AmiiboSetNameInternal ?? "Unknown " + AmiiboSetId;
+                return AmiiboSetNameInternal?.FullName ?? "Unknown " + AmiiboSetId;
+            }
+        }
+        public string AmiiboSetShortName
+        {
+            get
+            {
+                return AmiiboSetNameInternal?.ShortName ?? "UNK";
             }
         }
         public Image AmiiboImage
