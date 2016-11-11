@@ -37,3 +37,4 @@ Special Thanks
 - John "LouieGeetoo" Pray for his great work with http://www.amiibo.life
 - HouseBreaker for the CDN parts I borrowed from https://github.com/HouseBreaker/NintendoCDN-TicketParser
 - https://code.google.com/archive/p/3dsexplorer/ for the image processing parts
+- http://www.codeproject.com/Articles/31702/NET-Targa-Image-Reader for the TGA processing part

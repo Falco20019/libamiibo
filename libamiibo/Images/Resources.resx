@@ -208,14 +208,26 @@
   <data name="icon_0008000000030002" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_0008000000030002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_0008000002640102" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_0008000002640102.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_0008ff00023b0702" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_0008ff00023b0702.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_00090000000d0002" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_00090000000d0002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_0009000002650102" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_0009000002650102.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_000a000000380102" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_000a000000380102.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_0013000002660102" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_0013000002660102.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_0014000002670102" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_0014000002670102.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_0017000002680102" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_0017000002680102.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
