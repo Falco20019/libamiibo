@@ -51,6 +51,14 @@ namespace LibAmiibo.Data.Figurine
             //{ 0x01A801, "???" },            // TODO: Some special Redd
             //{ 0x01B101, "???" },            // TODO: Some special Shrunk
             //{ 0x01C101, "???" },            // TODO: Some special Lottie
+            { 0x028f01, "Sanrio series" },
+            { 0x02e001, "Sanrio series" },
+            { 0x032e01, "Sanrio series" },
+            { 0x350001, "Male rider" },
+            { 0x350002, "Female rider" },
+            { 0x037401, "Sanrio series" },
+            { 0x04a801, "Sanrio series" },
+            { 0x04d301, "Sanrio series" },
             { 0x05c001, "Zero Suit" },
             { 0x064001, "& Pikmin" },
             { 0x07c000, "Brawler" },

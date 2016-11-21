@@ -50,10 +50,10 @@ namespace LibAmiibo.Data.Figurine
             { 0x334,    new GroupName("PAC-MAN", "PAC") },
             { 0x348,    new GroupName("Mega Man", "MMA") },
             { 0x34C,    new GroupName("Street Fighter", "SFI") },
+            { 0x350,    new GroupName("Monster Hunter", "MHU") },
             { 0x35C,    new GroupName("Shovel Knight", "SHK") },
             //{ 0xXXX,    new GroupName("Final Fantasy", "FFA") },
             //{ 0xXXX,    new GroupName("Bayonetta", "BAY") },
-            //{ 0xXXX,    new GroupName("Monster Hunter", "MHU") },
             { 0xFFF,    new GroupName("(empty)", "?") },
         };
 

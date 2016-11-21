@@ -548,6 +548,67 @@ namespace LibAmiibo.Data.Figurine
             { 0x0266, "Daisy" },
             { 0x0267, "Waluigi" },
             { 0x0268, "Boo" },
+            // TODO: More unknown
+            { 0x02E1, "One-Eyed Rathalos and Rider (Male)" },
+            { 0x02E2, "One-Eyed Rathalos and Rider (Female)" },
+            { 0x02E3, "Nabiru" },
+            // TODO: More unknown
+            { 0x02E7, "Vivian (ACW)" },     // TODO: Character missing
+            { 0x02E8, "Hopkins (ACW)" },
+            { 0x02E9, "June (ACW)" },
+            { 0x02EA, "Piper (ACW)" },
+            { 0x02EB, "Paolo (ACW)" },
+            { 0x02EC, "Hornsby (ACW)" },
+            { 0x02ED, "Stella (ACW)" },
+            { 0x02EE, "Tybalt (ACW)" },
+            { 0x02EF, "Huck (ACW)" },       // TODO: Character missing
+            { 0x02F0, "Sylvana (ACW)" },
+            { 0x02F1, "Boris (ACW)" },
+            { 0x02F2, "Wade (ACW)" },
+            { 0x02F3, "Carrie (ACW)" },
+            { 0x02F4, "Ketchup (ACW)" },    // TODO: Character missing
+            { 0x02F5, "Rex (ACW)" },        // TODO: Character missing
+            { 0x02F6, "Stu (ACW)" },
+            { 0x02F7, "Ursala (ACW)" },
+            { 0x02F8, "Jacob (ACW)" },
+            { 0x02F9, "Maddie (ACW)" },
+            { 0x02FA, "Billy (ACW)" },
+            { 0x02FB, "Boyd (ACW)" },
+            { 0x02FC, "Bitty (ACW)" },      // TODO: Character missing
+            { 0x02FD, "Maggie (ACW)" },
+            { 0x02FE, "Murphy (ACW)" },
+            { 0x02FF, "Plucky (ACW)" },
+            { 0x0300, "Sandy (ACW)" },
+            { 0x0301, "Claude (ACW)" },
+            { 0x0302, "Raddle (ACW)" },
+            { 0x0303, "Julia (ACW)" },
+            { 0x0304, "Louie (ACW)" },      // TODO: Character missing
+            { 0x0305, "Bea (ACW)" },
+            { 0x0306, "Admiral (ACW)" },
+            { 0x0307, "Ellie (ACW)" },
+            { 0x0308, "Boots (ACW)" },
+            { 0x0309, "Weber (ACW)" },
+            { 0x030A, "Candi (ACW)" },
+            { 0x030B, "Leopold (ACW)" },
+            { 0x030C, "Spike (ACW)" },
+            { 0x030D, "Cashmere (ACW)" },   // TODO: Character missing
+            { 0x030E, "Tad (ACW)" },
+            { 0x030F, "Norma (ACW)" },      // TODO: Character missing
+            { 0x0310, "Gonzo (ACW)" },
+            { 0x0311, "Sprocket (ACW)" },   // TODO: Character missing
+            { 0x0312, "Snooty (ACW)" },
+            { 0x0313, "Olive (ACW)" },      // TODO: Character missing
+            { 0x0314, "Dobie (ACW)" },
+            { 0x0315, "Buzz (ACW)" },
+            { 0x0316, "Cleo (ACW)" },
+            { 0x0317, "Ike (ACW)" },        // TODO: Character missing
+            { 0x0318, "Tasha (ACW)" },
+            { 0x0319, "Rilla (ACS)" },
+            { 0x031A, "Marty (ACS)" },
+            { 0x031B, "Etoile (ACS)" },
+            { 0x031C, "Chai (ACS)" },
+            { 0x031D, "Chelsea (ACS)" },
+            { 0x031E, "Toby (ACS)" },
             //{ 0x0XXX, "Corrin" },
             //{ 0x0XXX, "Cloud Strife" },
             //{ 0x0XXX, "Bayonetta" },
