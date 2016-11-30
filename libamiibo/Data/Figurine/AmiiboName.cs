@@ -553,7 +553,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x02E2, "One-Eyed Rathalos and Rider (Female)" },
             { 0x02E3, "Nabiru" },
             // TODO: More unknown
-            { 0x02E7, "Vivian (ACW)" },     // TODO: Character missing
+            { 0x02E7, "Vivian (ACW)" },
             { 0x02E8, "Hopkins (ACW)" },
             { 0x02E9, "June (ACW)" },
             { 0x02EA, "Piper (ACW)" },
@@ -595,7 +595,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x030E, "Tad (ACW)" },
             { 0x030F, "Norma (ACW)" },      // TODO: Character missing
             { 0x0310, "Gonzo (ACW)" },
-            { 0x0311, "Sprocket (ACW)" },   // TODO: Character missing
+            { 0x0311, "Sprocket (ACW)" },
             { 0x0312, "Snooty (ACW)" },
             { 0x0313, "Olive (ACW)" },      // TODO: Character missing
             { 0x0314, "Dobie (ACW)" },
