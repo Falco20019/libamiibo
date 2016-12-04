@@ -463,6 +463,36 @@ namespace LibAmiibo.Images {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icon_01000000034b0902 {
+            get {
+                object obj = ResourceManager.GetObject("icon_01000000034b0902", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icon_01000000034f0902 {
+            get {
+                object obj = ResourceManager.GetObject("icon_01000000034f0902", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icon_0100000003500902 {
+            get {
+                object obj = ResourceManager.GetObject("icon_0100000003500902", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icon_0100010000160002 {
             get {
                 object obj = ResourceManager.GetObject("icon_0100010000160002", resourceCulture);
@@ -476,6 +506,16 @@ namespace LibAmiibo.Images {
         public static System.Drawing.Bitmap icon_01010000000e0002 {
             get {
                 object obj = ResourceManager.GetObject("icon_01010000000e0002", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icon_0101000003520902 {
+            get {
+                object obj = ResourceManager.GetObject("icon_0101000003520902", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

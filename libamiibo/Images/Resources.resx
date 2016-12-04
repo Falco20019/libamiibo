@@ -238,11 +238,23 @@
   <data name="icon_0100000000040002" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_0100000000040002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_01000000034b0902" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_01000000034b0902.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_01000000034f0902" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_01000000034f0902.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_0100000003500902" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_0100000003500902.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icon_0100010000160002" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_0100010000160002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_01010000000e0002" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_01010000000e0002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_0101000003520902" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_0101000003520902.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_0101010000170002" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_0101010000170002.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
