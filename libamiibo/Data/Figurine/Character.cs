@@ -477,6 +477,9 @@ namespace LibAmiibo.Data.Figurine
             { 0x34C0,   "Ryu" },
             { 0x3500,   "One-Eyed Rathalos" },
             { 0x3501,   "Nabiru" },
+            { 0x3502,   "Rathian" },
+            { 0x3503,   "Barioth" },
+            { 0x3504,   "Qurupeco" },
             { 0x35C0,   "Shovel Knight" },
             //{ 0x3840,   "Cloud Strife" },     // TODO: Check lists
             //{ 0x3980,   "Bayonetta" },        // TODO: Check lists

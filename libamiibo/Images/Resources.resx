@@ -1885,4 +1885,22 @@
   <data name="icon_0513000102e70502" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>icon_0513000102e70502.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icon_3500010002e10f02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_3500010002e10f02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_3500020002e20f02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_3500020002e20f02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_3501000002e30f02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_3501000002e30f02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_3502010002e40f02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_3502010002e40f02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_3503010002e50f02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_3503010002e50f02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_3504010002e60f02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icon_3504010002e60f02.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

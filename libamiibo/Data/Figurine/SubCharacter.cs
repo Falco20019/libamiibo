@@ -54,8 +54,6 @@ namespace LibAmiibo.Data.Figurine
             { 0x028f01, "Sanrio series" },
             { 0x02e001, "Sanrio series" },
             { 0x032e01, "Sanrio series" },
-            { 0x350001, "Male rider" },
-            { 0x350002, "Female rider" },
             { 0x037401, "Sanrio series" },
             { 0x04a801, "Sanrio series" },
             { 0x04d301, "Sanrio series" },
@@ -68,6 +66,11 @@ namespace LibAmiibo.Data.Figurine
             { 0x080002, "Boy" },
             { 0x080003, "Squid" },
             { 0x199601, "Shadow" },
+            { 0x350001, "Male rider" },
+            { 0x350002, "Female rider" },
+            { 0x350201, "& Cheval" },
+            { 0x350301, "& Ayuria" },
+            { 0x350401, "& Dan" },
             { 0xFFFFFF, "(empty)" },
         };
 

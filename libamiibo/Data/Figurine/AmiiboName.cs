@@ -552,6 +552,9 @@ namespace LibAmiibo.Data.Figurine
             { 0x02E1, "One-Eyed Rathalos and Rider (Male)" },
             { 0x02E2, "One-Eyed Rathalos and Rider (Female)" },
             { 0x02E3, "Nabiru" },
+            { 0x02E4, "Rathian and Cheval" },
+            { 0x02E5, "Barioth and Ayuria" },
+            { 0x02E6, "Qurupeco and Dan" },
             // TODO: More unknown
             { 0x02E7, "Vivian (ACW)" },
             { 0x02E8, "Hopkins (ACW)" },
