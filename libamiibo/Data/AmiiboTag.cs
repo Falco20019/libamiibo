@@ -135,6 +135,16 @@ namespace LibAmiibo.Data
             }
         }
 
+        public byte[] NtagECDSASignature
+        {
+            get
+            {
+                var data = new byte[0x020];
+                Array.Copy(InternalTag, 0x208, data, 0, data.Length);
+                return data;
+            }
+        }
+
         private AmiiboTag(byte[] internalTag)
         {
             this.InternalTag = internalTag;

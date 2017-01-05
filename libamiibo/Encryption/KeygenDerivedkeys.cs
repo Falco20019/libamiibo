@@ -91,7 +91,7 @@ namespace LibAmiibo.Encryption
             // Data signature NOT copied
             Array.Copy(input, 0x028, output, 0x028, 0x004);
             // Tag signature NOT copied
-            Array.Copy(input, 0x1D4, output, 0x1D4, 0x034);
+            Array.Copy(input, 0x1D4, output, 0x1D4, 0x054);
         }
     }
 }

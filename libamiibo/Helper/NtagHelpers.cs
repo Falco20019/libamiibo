@@ -4,8 +4,8 @@ namespace LibAmiibo.Helper
 {
     public static class NtagHelpers
     {
-        public const int NFC3D_AMIIBO_SIZE = 520;
-        public const int NFC3D_NTAG_SIZE = 540;
+        public const int NFC3D_AMIIBO_SIZE = 552;
+        public const int NFC3D_NTAG_SIZE = 572;
 
         public static readonly byte[] CONFIG_BYTES =
         {
@@ -34,6 +34,17 @@ namespace LibAmiibo.Helper
             Array.Copy(tag, 0x034, intl, 0x1B4, 0x020);     // Tag Signature (signs 0x1D4 - 0x208)
             Array.Copy(tag, 0x000, intl, 0x1D4, 0x008);     // NTAG Serial
             Array.Copy(tag, 0x054, intl, 0x1DC, 0x02C);     // Plaintext data
+
+            // ECDSA of tag:
+            if (tag.Length == NFC3D_NTAG_SIZE)
+            {
+                Array.Copy(tag, 0x21C, intl, 0x208, 0x020);
+            }
+            else
+            {
+                for (int i = 0x208; i < 0x208 + 0x20; i++)
+                    intl[i] = 0xFF;
+            }
         }
 
         public static void InternalToTag(byte[] intl, byte[] tag)
@@ -45,6 +56,7 @@ namespace LibAmiibo.Helper
             Array.Copy(intl, 0x1B4, tag, 0x034, 0x020);
             Array.Copy(intl, 0x1D4, tag, 0x000, 0x008);
             Array.Copy(intl, 0x1DC, tag, 0x054, 0x02C);
+            Array.Copy(intl, 0x208, tag, 0x21C, 0x020);
             Array.Copy(CONFIG_BYTES, 0x000, tag, 0x208, 0x00C);
         }
 
