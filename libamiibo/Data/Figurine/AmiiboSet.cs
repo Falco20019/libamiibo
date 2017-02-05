@@ -32,7 +32,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x00, new GroupName("Super Smash Bros.", "SSB") },
             { 0x01, new GroupName("Super Mario Bros.", "SMB") },
             { 0x02, new GroupName("Chibi-Robo!", "CHI") },
-            { 0x03, new GroupName("Yoshi's Wooly World", "YWW") },
+            { 0x03, new GroupName("Yoshi's Woolly World", "YWW") },
             { 0x04, new GroupName("Splatoon", "SPL") },
             { 0x05, new GroupName("Animal Crossing", "AC") },
             { 0x06, new GroupName("8-bit Mario", "8BT") },

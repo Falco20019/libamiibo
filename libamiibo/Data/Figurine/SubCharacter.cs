@@ -33,6 +33,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x000401, "& Luma" },
             { 0x0005ff, "Hammer Slam" },
             { 0x0008ff, "Turbo Charge" },
+            { 0x008001, "Yarn" },
             { 0x010001, "Toon" },
             { 0x010101, "Shiek" },
             { 0x010201, "-dorf" },

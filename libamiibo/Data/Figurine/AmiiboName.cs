@@ -616,6 +616,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x034F, "Link, 8-Bit" },
             { 0x0350, "Toon Link, TWW" },
             { 0x0352, "Toon Zelda, TWW" },
+            { 0x035D, "Poochy" },
             //{ 0x0XXX, "Corrin" },
             //{ 0x0XXX, "Cloud Strife" },
             //{ 0x0XXX, "Bayonetta" },

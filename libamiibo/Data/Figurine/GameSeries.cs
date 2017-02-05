@@ -29,6 +29,7 @@ namespace LibAmiibo.Data.Figurine
     {
         private static Dictionary<int, GroupName> dict = new Dictionary<int, GroupName>
         {
+            { 0x008,    new GroupName("Yoshi's Woolly World", "YWW") }, // TODO: Maybe this is Yoshi's Story?
             { 0x010,    new GroupName("Legend of Zelda", "LOZ") },
             { 0x058,    new GroupName("Star Fox", "STF") },
             { 0x05C,    new GroupName("Metroid", "MET") },

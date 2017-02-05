@@ -443,6 +443,16 @@ namespace LibAmiibo.Images {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icon_00800102035d0302 {
+            get {
+                object obj = ResourceManager.GetObject("icon_00800102035d0302", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icon_0100000000000002 {
             get {
                 object obj = ResourceManager.GetObject("icon_0100000000000002", resourceCulture);

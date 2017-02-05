@@ -42,6 +42,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0013,   "Daisy" },
             { 0x0014,   "Waluigi" },
             { 0x0017,   "Boo" },
+            { 0x0080,   "Poochy" },
             { 0x0100,   "Link" },
             { 0x0101,   "Zelda" },
             { 0x0102,   "Ganon" },
