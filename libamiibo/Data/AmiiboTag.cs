@@ -192,6 +192,10 @@ namespace LibAmiibo.Data
         public bool IsNtagECDSASignatureValid()
         {
             var NtagPubKey = "04494E1A386D3D3CFE3DC10E5DE68A499B1C202DB5B132393E89ED19FE5BE8BC61";
+
+            if (NtagECDSASignature.Length != 0x20 || NtagSerial.Length != 8)
+                return false;
+
             var r = new byte[NtagECDSASignature.Length/2];
             var s = new byte[NtagECDSASignature.Length/2];
             Array.Copy(NtagECDSASignature, 0, r, 0, r.Length);
