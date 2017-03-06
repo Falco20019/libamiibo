@@ -191,8 +191,6 @@ namespace LibAmiibo.Data
 
         public bool IsNtagECDSASignatureValid()
         {
-            var NtagPubKey = "04494E1A386D3D3CFE3DC10E5DE68A499B1C202DB5B132393E89ED19FE5BE8BC61";
-
             if (NtagECDSASignature.Length != 0x20 || NtagSerial.Length != 8)
                 return false;
 
@@ -207,7 +205,7 @@ namespace LibAmiibo.Data
 
             var curve = SecNamedCurves.GetByName("secp128r1");
             var curveSpec = new ECDomainParameters(curve.Curve, curve.G, curve.N, curve.H, curve.GetSeed());
-            var key = new ECPublicKeyParameters("ECDSA", curve.Curve.DecodePoint(Hex.Decode(NtagPubKey)), curveSpec);
+            var key = new ECPublicKeyParameters("ECDSA", curve.Curve.DecodePoint(NtagHelpers.NTAG_PUB_KEY), curveSpec);
 
             var signer = SignerUtilities.GetSigner("NONEwithECDSA");
 
@@ -218,9 +216,11 @@ namespace LibAmiibo.Data
             using (var ms = new MemoryStream())
             using (var der = new Asn1OutputStream(ms))
             {
-                var v = new Asn1EncodableVector();
-                v.Add(new DerInteger(new BigInteger(1, r)));
-                v.Add(new DerInteger(new BigInteger(1, s)));
+                var v = new Asn1EncodableVector
+                {
+                    new DerInteger(new BigInteger(1, r)),
+                    new DerInteger(new BigInteger(1, s))
+                };
                 der.WriteObject(new DerSequence(v));
 
                 return signer.VerifySignature(ms.ToArray());
