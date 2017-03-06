@@ -21,10 +21,17 @@
  */
 
 using System;
+using System.IO;
 using LibAmiibo.Data.Figurine;
 using LibAmiibo.Data.Settings;
 using LibAmiibo.Encryption;
 using LibAmiibo.Helper;
+using Org.BouncyCastle.Asn1;
+using Org.BouncyCastle.Asn1.Sec;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Math;
+using Org.BouncyCastle.Security;
+using Org.BouncyCastle.Utilities.Encoders;
 
 namespace LibAmiibo.Data
 {
@@ -180,6 +187,44 @@ namespace LibAmiibo.Data
 
             amiiboKeys.Pack(this.InternalTag, encryptedData);
             return encryptedData;
+        }
+
+        public bool IsNtagECDSASignatureValid()
+        {
+            if (NtagECDSASignature.Length != 0x20 || NtagSerial.Length != 8)
+                return false;
+
+            var r = new byte[NtagECDSASignature.Length/2];
+            var s = new byte[NtagECDSASignature.Length/2];
+            Array.Copy(NtagECDSASignature, 0, r, 0, r.Length);
+            Array.Copy(NtagECDSASignature, r.Length, s, 0, s.Length);
+
+            var uid = new byte[7];
+            Array.Copy(NtagSerial, 0, uid, 0, 3);
+            Array.Copy(NtagSerial, 4, uid, 3, 4);
+
+            var curve = SecNamedCurves.GetByName("secp128r1");
+            var curveSpec = new ECDomainParameters(curve.Curve, curve.G, curve.N, curve.H, curve.GetSeed());
+            var key = new ECPublicKeyParameters("ECDSA", curve.Curve.DecodePoint(NtagHelpers.NTAG_PUB_KEY), curveSpec);
+
+            var signer = SignerUtilities.GetSigner("NONEwithECDSA");
+
+            signer.Init(false, key);
+
+            signer.BlockUpdate(uid, 0, uid.Length);
+
+            using (var ms = new MemoryStream())
+            using (var der = new Asn1OutputStream(ms))
+            {
+                var v = new Asn1EncodableVector
+                {
+                    new DerInteger(new BigInteger(1, r)),
+                    new DerInteger(new BigInteger(1, s))
+                };
+                der.WriteObject(new DerSequence(v));
+
+                return signer.VerifySignature(ms.ToArray());
+            }
         }
     }
 }
