@@ -31,6 +31,7 @@ namespace LibAmiibo.Data.Figurine
         {
             { 0x008,    new GroupName("Yoshi's Woolly World", "YWW") }, // TODO: Maybe this is Yoshi's Story?
             { 0x010,    new GroupName("Legend of Zelda", "LOZ") },
+            { 0x014,    new GroupName("Breath of the Wild", "BOW") },
             { 0x058,    new GroupName("Star Fox", "STF") },
             { 0x05C,    new GroupName("Metroid", "MET") },
             { 0x060,    new GroupName("F-Zero", "FZO") },
@@ -43,6 +44,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x080,    new GroupName("Splatoon", "SPL") },
             { 0x1D0,    new GroupName("Pokken", "POK") },
             { 0x1F0,    new GroupName("Kirby", "KIR") },
+            { 0x1F4,    new GroupName("BoxBoy!", "BXB") },
             { 0x210,    new GroupName("Fire Emblem", "FEM") },
             { 0x224,    new GroupName("Xenoblade Chronicles", "XCH") },
             { 0x228,    new GroupName("Earthbound", "EBO") },
@@ -65,6 +67,8 @@ namespace LibAmiibo.Data.Figurine
                 return name;
             if (id >= 0x000 && id <= 0x001)
                 return new GroupName("Super Mario", "SMA");
+            if (id >= 0x010 && id <= 0x014)
+                return new GroupName("Legend of Zelda", "LOZ");
             if (id >= 0x018 && id <= 0x051)
                 return new GroupName("Animal Crossing", "ACR");
             if (id >= 0x190 && id <= 0x1BD)

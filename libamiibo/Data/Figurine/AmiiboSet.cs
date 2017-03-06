@@ -38,13 +38,14 @@ namespace LibAmiibo.Data.Figurine
             { 0x06, new GroupName("8-bit Mario", "8BT") },
             { 0x07, new GroupName("Skylanders", "SKY") },
             // Missing
-            { 0x09, new GroupName("Twilight Princess", "ZTP") },
+            { 0x09, new GroupName("The Legend of Zelda", "LOZ") },
             { 0x0A, new GroupName("Shovel Knight", "SHK") },
             // Missing
             { 0x0C, new GroupName("Kirby", "KIR") },
             { 0x0D, new GroupName("Pokken", "POK") },
             // Missing
             { 0x0F, new GroupName("Monster Hunter", "MHU") },
+            { 0x10, new GroupName("BoxBoy!", "BXB") },
             { 0xFF, new GroupName("(empty)", "?") },
         };
 
