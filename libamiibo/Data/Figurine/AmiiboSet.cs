@@ -43,7 +43,7 @@ namespace LibAmiibo.Data.Figurine
             // Missing
             { 0x0C, new GroupName("Kirby", "KIR") },
             { 0x0D, new GroupName("Pokken", "POK") },
-            // Missing
+            { 0x0E, new GroupName("Mario Sports Superstars", "MSS") },
             { 0x0F, new GroupName("Monster Hunter", "MHU") },
             { 0x10, new GroupName("BoxBoy!", "BXB") },
             { 0xFF, new GroupName("(empty)", "?") },

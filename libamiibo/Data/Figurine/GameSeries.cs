@@ -71,6 +71,8 @@ namespace LibAmiibo.Data.Figurine
                 return new GroupName("Legend of Zelda", "LOZ");
             if (id >= 0x018 && id <= 0x051)
                 return new GroupName("Animal Crossing", "ACR");
+            if (id >= 0x09C && id <= 0x09D)
+                return new GroupName("Mario Sports Superstars", "MSS");
             if (id >= 0x190 && id <= 0x1BD)
                 return new GroupName("Pokémon", "POK");
 

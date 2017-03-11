@@ -187,16 +187,16 @@ namespace LibAmiibo.Data.Figurine
                     return retailName;
 
                 // Always use the characters name if known, or it's number in the series:
-                retailName = CharacterNameInternal ?? "Char#" + CharacterNumberInGameSeries;
+                retailName = CharacterNameInternal ?? ("Char#" + CharacterNumberInGameSeries);
 
                 // Add the game series name (or id if unknown):
-                retailName += " (" + GameSeriesNameInternal?.FullName ?? "series " + GameSeriesId;
+                retailName += " (" + (GameSeriesNameInternal?.FullName ?? "series " + GameSeriesId);
 
                 // Only add the variant if not the standard one:
                 if (CharacterVariant > 0)
                 {
                     // Try to get the subcharacter name or use it's number instead
-                    retailName += ", " + SubCharacterNameInternal ?? "variant " + CharacterVariant;
+                    retailName += ", " + (SubCharacterNameInternal ?? "variant " + CharacterVariant);
                 }
                 retailName += ")";
 
