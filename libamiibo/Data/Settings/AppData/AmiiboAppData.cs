@@ -22,7 +22,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using LibAmiibo.Helper;
 
 namespace LibAmiibo.Data.Settings.AppData
@@ -32,22 +31,24 @@ namespace LibAmiibo.Data.Settings.AppData
         public ArraySegment<byte> CryptoBuffer { get; private set; }
         public ArraySegment<byte> AppData { get; private set; }
 
-        private IList<byte> CryptoBufferList
+        private IList<byte> CryptoBufferList => CryptoBuffer;
+
+        private ArraySegment<byte> AppDataInitializationTitleIDBuffer
         {
-            get { return CryptoBuffer as IList<byte>; }
+            get { return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x80, 0x08); }
+            set { AppDataInitializationTitleIDBuffer.CopyFrom(value); }
         }
 
         public Title AppDataInitializationTitleID
         {
-            get
-            {
-                return Title.FromTitleID(new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x80, 0x08));
-            }
+            get { return Title.FromTitleID(AppDataInitializationTitleIDBuffer); }
+            set { AppDataInitializationTitleIDBuffer.CopyFrom(value.Data); }
         }
 
         public uint AppID
         {
             get { return NtagHelpers.UInt32FromTag(CryptoBuffer, 0x8A); }
+            set { NtagHelpers.UInt32ToTag(CryptoBuffer, 0x8A, value); }
         }
 
         public AmiiboAppData(ArraySegment<byte> cryptoData, ArraySegment<byte> appData)

@@ -38,6 +38,11 @@ namespace LibAmiibo.Helper
             return input.Remove(end);
         }
 
+        public static string CleanOutput(string output)
+        {
+            return output.PadRight(10, '\0');
+        }
+
         public static T ReadStruct<T>(Stream fs)
         {
             var buffer = new byte[Marshal.SizeOf(typeof(T))];

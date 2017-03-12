@@ -83,6 +83,14 @@ namespace LibAmiibo.Data.Settings.AppData
             this.Data = data;
         }
 
+        public static Title FromTitleID(long data)
+        {
+            var formatted = BitConverter.GetBytes(data);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(formatted);
+            return Title.FromTitleID(formatted);
+        }
+
         public static Title FromTitleID(byte[] data)
         {
             return new Title(new ArraySegment<byte>(data));

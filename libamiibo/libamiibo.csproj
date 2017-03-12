@@ -64,6 +64,7 @@
     <Compile Include="Data\Settings\UserData\AmiiboUserData.cs" />
     <Compile Include="Encryption\CDNKeys.cs" />
     <Compile Include="Files.cs" />
+    <Compile Include="Helper\ArraySegmentExtensions.cs" />
     <Compile Include="Helper\CDNUtils.cs" />
     <Compile Include="Helper\GroupName.cs" />
     <Compile Include="Helper\IDBEUtils.cs" />

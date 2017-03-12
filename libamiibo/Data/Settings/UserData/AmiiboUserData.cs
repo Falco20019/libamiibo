@@ -23,7 +23,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using LibAmiibo.Data.Settings.AppData;
 using LibAmiibo.Helper;
 
 namespace LibAmiibo.Data.Settings.UserData
@@ -32,10 +31,7 @@ namespace LibAmiibo.Data.Settings.UserData
     {
         public ArraySegment<byte> CryptoBuffer { get; private set; }
 
-        private IList<byte> CryptoBufferList
-        {
-            get { return CryptoBuffer as IList<byte>; }
-        }
+        private IList<byte> CryptoBufferList => CryptoBuffer;
 
         public byte[] GetAmiiboSettingsBytes
         {
@@ -47,45 +43,46 @@ namespace LibAmiibo.Data.Settings.UserData
                     CryptoBufferList[1]
                 };
             }
+            set
+            {
+                var tmp = (int)CryptoBufferList[0];
+                tmp &= ~0x0F;
+                tmp |= value[0] & 0x0F;
+                CryptoBufferList[0] = (byte)tmp;
+                CryptoBufferList[1] = value[1];
+            }
         }
 
         // TODO: Add Country Code from 0x01
 
-        public ushort CrcUpdateCounter
-        {
-            get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x02); }
-        }
-
         public ushort AmiiboSetupDateValue
         {
             get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x04); }
+            set { NtagHelpers.UInt16ToTag(CryptoBuffer, 0x04, value); }
         }
 
         public DateTime AmiiboSetupDate
         {
-            get
-            {
-                return NtagHelpers.DateTimeFromTag(AmiiboSetupDateValue);
-            }
-        }
-
-        // TODO: This is the unique console hash
-        public uint CRC32
-        {
-            get { return NtagHelpers.UInt32FromTag(CryptoBuffer, 0x08); }
+            get { return NtagHelpers.DateTimeFromTag(AmiiboSetupDateValue); }
+            set { AmiiboSetupDateValue = NtagHelpers.DateTimeToTag(value); }
         }
 
         public string AmiiboNickname
         {
             get { return MarshalUtil.CleanInput(Encoding.BigEndianUnicode.GetString(CryptoBuffer.Array, CryptoBuffer.Offset + 0x0C, 0x14)); }
+            set { AmiiboNicknameBuffer.CopyFrom(Encoding.BigEndianUnicode.GetBytes(MarshalUtil.CleanOutput(value))); }
+        }
+
+        private ArraySegment<byte> AmiiboNicknameBuffer
+        {
+            get { return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x0C, 0x14); }
+            set { AmiiboNicknameBuffer.CopyFrom(value); }
         }
 
         public ArraySegment<byte> OwnerMii
         {
-            get
-            {
-                return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x20, 0x60);
-            }
+            get { return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x20, 0x60); }
+            set { OwnerMii.CopyFrom(value); }
         }
 
         public AmiiboUserData(ArraySegment<byte> cryptoData)

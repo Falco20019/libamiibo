@@ -81,6 +81,14 @@ namespace LibAmiibo.Helper
             return BitConverter.ToUInt16(data, 0);
         }
 
+        public static void UInt16ToTag(ArraySegment<byte> buffer, int offset, ushort value)
+        {
+            var data = BitConverter.GetBytes(value);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(data);
+            buffer.CopyFrom(data, 0, offset, data.Length);
+        }
+
         public static uint UInt32FromTag(ArraySegment<byte> buffer, int offset)
         {
             var data = new byte[0x04];
@@ -88,6 +96,14 @@ namespace LibAmiibo.Helper
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(data);
             return BitConverter.ToUInt32(data, 0);
+        }
+
+        public static void UInt32ToTag(ArraySegment<byte> buffer, int offset, uint value)
+        {
+            var data = BitConverter.GetBytes(value);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(data);
+            buffer.CopyFrom(data, 0, offset, data.Length);
         }
 
         public static ulong UInt64FromTag(ArraySegment<byte> buffer, int offset)
@@ -99,12 +115,52 @@ namespace LibAmiibo.Helper
             return BitConverter.ToUInt64(data, 0);
         }
 
+        public static void UInt64ToTag(ArraySegment<byte> buffer, int offset, ulong value)
+        {
+            var data = BitConverter.GetBytes(value);
+            if (BitConverter.IsLittleEndian)
+                Array.Reverse(data);
+            buffer.CopyFrom(data, 0, offset, data.Length);
+        }
+
         public static DateTime DateTimeFromTag(ushort value)
         {
             var day = value & 0x1F;
             var month = (value >> 5) & 0x0F;
             var year = (value >> 9) & 0x7F;
             return new DateTime(2000 + year, month, day);
+        }
+
+        public static ushort DateTimeToTag(DateTime value)
+        {
+            int result = 0;
+            result |= value.Year - 2000;
+            result <<= 4;
+            result |= value.Month;
+            result <<= 5;
+            result |= value.Day;
+            return (ushort) result;
+        }
+
+        public static byte[] StringToByteArrayFastest(string hex)
+        {
+            if (hex.Length % 2 != 0)
+                throw new Exception("The binary key cannot have an odd number of digits");
+
+            byte[] arr = new byte[hex.Length >> 1];
+
+            for (int i = 0; i < hex.Length >> 1; ++i)
+            {
+                arr[i] = (byte)((GetHexVal(hex[i << 1]) << 4) + (GetHexVal(hex[(i << 1) + 1])));
+            }
+
+            return arr;
+        }
+
+        private static int GetHexVal(char hex)
+        {
+            int val = (int)hex;
+            return val - (val < 58 ? 48 : 55);
         }
     }
 }

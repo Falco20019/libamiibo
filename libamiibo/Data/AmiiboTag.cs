@@ -21,40 +21,55 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using LibAmiibo.Data.Figurine;
 using LibAmiibo.Data.Settings;
-using LibAmiibo.Encryption;
 using LibAmiibo.Helper;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.Sec;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
-using Org.BouncyCastle.Utilities.Encoders;
 
 namespace LibAmiibo.Data
 {
     public class AmiiboTag
     {
         /// <summary>
+        /// 
         /// This can be an encrypted tag converted with NtagHelpers.GetInternalTag() or an decrypted tag
         /// unpacked with Nfc3DAmiiboKeys.Unpack()
         /// </summary>
-        public byte[] InternalTag { get; }
-        public Amiibo Amiibo { get; }
+        public ArraySegment<byte> InternalTag { get; }
+
+        private Amiibo amiibo;
+        public Amiibo Amiibo
+        {
+            get { return amiibo; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException(nameof(value));
+
+                this.amiibo = value;
+                var amiiboBuffer = new ArraySegment<byte>(InternalTag.Array, 0x1DC, 0x08);
+                amiiboBuffer.CopyFrom(NtagHelpers.StringToByteArrayFastest(value.StatueId));
+            }
+        }
+
         public AmiiboSettings AmiiboSettings { get; }
+
         /// <summary>
-        /// Only valid if HasAppData returns true.
+        /// Only valid if HasAppData returns true. Use AmiiboSettings.AmiiboAppData for easier access.
         /// </summary>
-        public byte[] AppData
+        public ArraySegment<byte> AppData
         {
             get
             {
-                var data = new byte[0xD8];
-                Array.Copy(InternalTag, 0x0DC, data, 0, data.Length);
-                return data;
+                return new ArraySegment<byte>(InternalTag.Array, 0x0DC, 0xD8);
             }
+            set { AppData.CopyFrom(value); }
         }
         public bool IsDecrypted { get; private set; }
 
@@ -63,113 +78,104 @@ namespace LibAmiibo.Data
             get { return IsDecrypted && AmiiboSettings.Status.HasFlag(Status.AppDataInitialized); }
         }
 
-        public bool HasSettings
+        public bool HasUserData
         {
-            get { return IsDecrypted && AmiiboSettings.Status.HasFlag(Status.SettingsInitialized); }
+            get { return IsDecrypted && AmiiboSettings.Status.HasFlag(Status.UserDataInitialized); }
         }
 
-        public byte[] DataSignature
+        public ArraySegment<byte> DataSignature
         {
             get
             {
-                var signature = new byte[0x20];
-                Array.Copy(InternalTag, 0x008, signature, 0, signature.Length);
-                return signature;
+                return new ArraySegment<byte>(InternalTag.Array, 0x008, 0x20);
             }
+            set { DataSignature.CopyFrom(value); }
         }
         /// <summary>
         /// Signs InternalTag from 0x1D4 to 0x208.
         /// </summary>
-        public byte[] TagSignature
+        public ArraySegment<byte> TagSignature
         {
             get
             {
-                var signature = new byte[0x020];
-                Array.Copy(InternalTag, 0x1B4, signature, 0, signature.Length);
-                return signature;
+                return new ArraySegment<byte>(InternalTag.Array, 0x1B4, 0x20);
             }
+            set { TagSignature.CopyFrom(value); }
         }
 
-        public byte[] CryptoInitSequence
+        public ArraySegment<byte> CryptoInitSequence
         {
             get
             {
-                var data = new byte[0x002];
-                Array.Copy(InternalTag, 0x028, data, 0, data.Length);
-                return data;
+                return new ArraySegment<byte>(InternalTag.Array, 0x028, 0x004);
             }
+            set { CryptoInitSequence.CopyFrom(value); }
         }
 
-        /// <summary>
-        /// Warning: Not sure if this is correct, maybe should be starting with 0x028 and is little-endian?
-        /// </summary>
         public ushort WriteCounter
         {
             get { return NtagHelpers.UInt16FromTag(InternalTag, 0x029); }
+            set { NtagHelpers.UInt16ToTag(InternalTag, 0x029, value); }
         }
 
-        public byte[] CryptoBuffer
+        public ArraySegment<byte> CryptoBuffer
         {
             get
             {
-                var data = new byte[0x188];
-                Array.Copy(InternalTag, 0x02C, data, 0, data.Length);
-                return data;
+                return new ArraySegment<byte>(InternalTag.Array, 0x02C, 0x188);
             }
+            set { CryptoBuffer.CopyFrom(value); }
         }
 
-        public byte[] NtagSerial
+        public ArraySegment<byte> NtagSerial
         {
             get
             {
-                var data = new byte[0x008];
-                Array.Copy(InternalTag, 0x1D4, data, 0, data.Length);
-                return data;
+                return new ArraySegment<byte>(InternalTag.Array, 0x1D4, 0x008);
             }
+            set { NtagSerial.CopyFrom(value); }
         }
 
         public string UID
         {
             get
             {
-                byte[] ntagSerial = this.NtagSerial;
+                IList<byte> ntagSerial = this.NtagSerial;
                 return String.Format("{0:X2} {1:X2} {2:X2} {3:X2} {4:X2} {5:X2} {6:X2}", ntagSerial[0], ntagSerial[1], ntagSerial[2], ntagSerial[4], ntagSerial[5], ntagSerial[6], ntagSerial[7]);
             }
         }
 
-        public byte[] PlaintextData
+        public ArraySegment<byte> PlaintextData
         {
             get
             {
-                var data = new byte[0x02C];
-                Array.Copy(InternalTag, 0x1DC, data, 0, data.Length);
-                return data;
+                return new ArraySegment<byte>(InternalTag.Array, 0x1DC, 0x02C);
             }
+            set { PlaintextData.CopyFrom(value); }
         }
 
-        public byte[] NtagECDSASignature
+        public ArraySegment<byte> NtagECDSASignature
         {
             get
             {
-                var data = new byte[0x020];
-                Array.Copy(InternalTag, 0x208, data, 0, data.Length);
-                return data;
+                return new ArraySegment<byte>(InternalTag.Array, 0x208, 0x020);
             }
+            set { NtagECDSASignature.CopyFrom(value); }
         }
 
-        private AmiiboTag(byte[] internalTag)
+        private AmiiboTag(ArraySegment<byte> internalTag)
         {
             this.InternalTag = internalTag;
             this.Amiibo = Amiibo.FromInternalTag(internalTag);
-            this.AmiiboSettings = AmiiboSettings.FromCryptoBuffer(CryptoBuffer);
+            this.AmiiboSettings = new AmiiboSettings(CryptoBuffer, AppData);
         }
 
         public static AmiiboTag FromNtagData(byte[] data)
         {
-            return new AmiiboTag(NtagHelpers.GetInternalTag(data)) { IsDecrypted = false };
+            return new AmiiboTag(new ArraySegment<byte>(NtagHelpers.GetInternalTag(data))) { IsDecrypted = false };
         }
 
-        public static AmiiboTag FromInternalTag(byte[] data)
+        public static AmiiboTag FromInternalTag(ArraySegment<byte> data)
         {
             return new AmiiboTag(data) { IsDecrypted = true };
         }
@@ -179,7 +185,9 @@ namespace LibAmiibo.Data
             byte[] decryptedData = new byte[NtagHelpers.NFC3D_AMIIBO_SIZE];
             var amiiboKeys = Files.AmiiboKeys;
 
-            return amiiboKeys != null && amiiboKeys.Unpack(data, decryptedData) ? FromInternalTag(decryptedData) : FromNtagData(data);
+            return amiiboKeys != null && amiiboKeys.Unpack(data, decryptedData)
+                ? FromInternalTag(new ArraySegment<byte>(decryptedData))
+                : FromNtagData(data);
         }
 
         public byte[] EncryptWithKeys()
@@ -190,23 +198,23 @@ namespace LibAmiibo.Data
             if (amiiboKeys == null)
                 return null;
 
-            amiiboKeys.Pack(this.InternalTag, encryptedData);
+            amiiboKeys.Pack(this.InternalTag.Array, encryptedData);
             return encryptedData;
         }
 
         public bool IsNtagECDSASignatureValid()
         {
-            if (NtagECDSASignature.Length != 0x20 || NtagSerial.Length != 8)
+            if (NtagECDSASignature.Count != 0x20 || NtagSerial.Count != 8)
                 return false;
 
-            var r = new byte[NtagECDSASignature.Length/2];
-            var s = new byte[NtagECDSASignature.Length/2];
-            Array.Copy(NtagECDSASignature, 0, r, 0, r.Length);
-            Array.Copy(NtagECDSASignature, r.Length, s, 0, s.Length);
+            var r = new byte[NtagECDSASignature.Count / 2];
+            var s = new byte[NtagECDSASignature.Count / 2];
+            Array.Copy(NtagECDSASignature.Array, NtagECDSASignature.Offset, r, 0, r.Length);
+            Array.Copy(NtagECDSASignature.Array, NtagECDSASignature.Offset + r.Length, s, 0, s.Length);
 
             var uid = new byte[7];
-            Array.Copy(NtagSerial, 0, uid, 0, 3);
-            Array.Copy(NtagSerial, 4, uid, 3, 4);
+            Array.Copy(NtagSerial.Array, NtagSerial.Offset + 0, uid, 0, 3);
+            Array.Copy(NtagSerial.Array, NtagSerial.Offset + 4, uid, 3, 4);
 
             var curve = SecNamedCurves.GetByName("secp128r1");
             var curveSpec = new ECDomainParameters(curve.Curve, curve.G, curve.N, curve.H, curve.GetSeed());

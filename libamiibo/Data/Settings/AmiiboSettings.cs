@@ -22,8 +22,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using LibAmiibo.Data.Settings.AppData;
 using LibAmiibo.Data.Settings.UserData;
 using LibAmiibo.Helper;
@@ -44,39 +42,56 @@ namespace LibAmiibo.Data.Settings
         public Status Status
         {
             get { return (Status) (CryptoBufferList[0] & 0x30); }
+            set
+            {
+                var tmp = (int)CryptoBufferList[0];
+                tmp &= ~0x30;
+                tmp |= (int)value & 0x30;
+                CryptoBufferList[0] = (byte)tmp;
+            }
+        }
+
+        public ushort CrcUpdateCounter
+        {
+            get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x02); }
+            set { NtagHelpers.UInt16ToTag(CryptoBuffer, 0x02, value); }
         }
 
         public ushort AmiiboLastModifiedDateValue
         {
             get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x06); }
+            set { NtagHelpers.UInt16ToTag(CryptoBuffer, 0x06, value); }
         }
 
         public DateTime AmiiboLastModifiedDate
         {
-            get
-            {
-                return NtagHelpers.DateTimeFromTag(AmiiboLastModifiedDateValue);
-            }
+            get { return NtagHelpers.DateTimeFromTag(AmiiboLastModifiedDateValue); }
+            set { AmiiboLastModifiedDateValue = NtagHelpers.DateTimeToTag(value); }
+        }
+
+        // TODO: This is the unique console hash
+        public uint CRC32
+        {
+            get { return NtagHelpers.UInt32FromTag(CryptoBuffer, 0x08); }
+            set { NtagHelpers.UInt32ToTag(CryptoBuffer, 0x08, value); }
         }
 
         public ushort WriteCounter
         {
             get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x88); }
+            set { NtagHelpers.UInt16ToTag(CryptoBuffer, 0x88, value); }
         }
 
         public ArraySegment<byte> Unknown8EBytes
         {
-            get
-            {
-                return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x8E, 0x02);
-            }
+            get { return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x8E, 0x02); }
+            set { Unknown8EBytes.CopyFrom(value); }
         }
+
         public ArraySegment<byte> Signature
         {
-            get
-            {
-                return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x90, 0x20);
-            }
+            get { return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x90, 0x20); }
+            set { Signature.CopyFrom(value); }
         }
 
         public AmiiboSettings(ArraySegment<byte> cryptoData, ArraySegment<byte> appData)
