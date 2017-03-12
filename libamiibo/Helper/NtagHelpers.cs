@@ -72,28 +72,28 @@ namespace LibAmiibo.Helper
             Array.Copy(CONFIG_BYTES, 0x000, tag, 0x208, 0x00C);
         }
 
-        public static ushort UInt16FromTag(byte[] buffer, int offset)
+        public static ushort UInt16FromTag(ArraySegment<byte> buffer, int offset)
         {
             var data = new byte[0x02];
-            Array.Copy(buffer, offset, data, 0, data.Length);
+            Array.Copy(buffer.Array, buffer.Offset + offset, data, 0, data.Length);
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(data);
             return BitConverter.ToUInt16(data, 0);
         }
 
-        public static uint UInt32FromTag(byte[] buffer, int offset)
+        public static uint UInt32FromTag(ArraySegment<byte> buffer, int offset)
         {
             var data = new byte[0x04];
-            Array.Copy(buffer, offset, data, 0, data.Length);
+            Array.Copy(buffer.Array, buffer.Offset + offset, data, 0, data.Length);
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(data);
             return BitConverter.ToUInt32(data, 0);
         }
 
-        public static ulong UInt64FromTag(byte[] buffer, int offset)
+        public static ulong UInt64FromTag(ArraySegment<byte> buffer, int offset)
         {
             var data = new byte[0x08];
-            Array.Copy(buffer, offset, data, 0, data.Length);
+            Array.Copy(buffer.Array, buffer.Offset + offset, data, 0, data.Length);
             if (BitConverter.IsLittleEndian)
                 Array.Reverse(data);
             return BitConverter.ToUInt64(data, 0);

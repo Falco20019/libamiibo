@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\AmiiboTag.cs" />
+    <Compile Include="Data\Settings\AppData\AmiiboAppData.cs" />
     <Compile Include="Data\Figurine\Amiibo.cs" />
     <Compile Include="Data\Figurine\AmiiboName.cs" />
     <Compile Include="Data\Figurine\AmiiboSet.cs" />
@@ -54,12 +55,13 @@
     <Compile Include="Data\Figurine\SubCharacter.cs" />
     <Compile Include="Data\Figurine\ToyType.cs" />
     <Compile Include="Data\Settings\AmiiboSettings.cs" />
-    <Compile Include="Data\Settings\TitleID\Variation.cs" />
-    <Compile Include="Data\Settings\TitleID\Category.cs" />
-    <Compile Include="Data\Settings\TitleID\IdRestriction.cs" />
-    <Compile Include="Data\Settings\TitleID\Platform.cs" />
+    <Compile Include="Data\Settings\AppData\TitleID\Variation.cs" />
+    <Compile Include="Data\Settings\AppData\TitleID\Category.cs" />
+    <Compile Include="Data\Settings\AppData\TitleID\IdRestriction.cs" />
+    <Compile Include="Data\Settings\AppData\TitleID\Platform.cs" />
     <Compile Include="Data\Settings\Status.cs" />
-    <Compile Include="Data\Settings\Title.cs" />
+    <Compile Include="Data\Settings\AppData\Title.cs" />
+    <Compile Include="Data\Settings\UserData\AmiiboUserData.cs" />
     <Compile Include="Encryption\CDNKeys.cs" />
     <Compile Include="Files.cs" />
     <Compile Include="Helper\CDNUtils.cs" />
@@ -86,9 +88,7 @@
     </Compile>
     <Compile Include="Helper\TargaImage.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\AppData\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Images\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -21,16 +21,18 @@
  */
 
 using System;
-using LibAmiibo.Data.Settings.TitleID;
+using System.Collections.Generic;
+using LibAmiibo.Data.Settings.AppData.TitleID;
 using LibAmiibo.Helper;
 
-namespace LibAmiibo.Data.Settings
+namespace LibAmiibo.Data.Settings.AppData
 {
     // TODO: Use http://3dsdb.com/ and http://wiiubrew.org/wiki/Title_database to resolve the titles
     public class Title
     {
         private IDBEContext context = null;
-        public byte[] Data { get; private set; }
+        public ArraySegment<byte> Data { get; private set; }
+        private IList<byte> DataList { get { return (IList<byte>) Data; } }
 
         public IDBEContext Context
         {
@@ -54,21 +56,14 @@ namespace LibAmiibo.Data.Settings
         }
         public ulong TitleID
         {
-            get
-            {
-                var data = new byte[0x08];
-                Array.Copy(Data, data, data.Length);
-                if (BitConverter.IsLittleEndian)
-                    Array.Reverse(data);
-                return BitConverter.ToUInt64(data, 0);
-            }
+            get { return NtagHelpers.UInt64FromTag(Data, 0x00); }
         }
         public uint UniqueID
         {
             get
             {
                 var data = new byte[0x04];
-                Array.Copy(Data, 0x04, data, 0x01, 0x03); // Offset by 0x02
+                Array.Copy(Data.Array, Data.Offset + 0x04, data, 0x01, 0x03); // Offset by 0x02
                 if (BitConverter.IsLittleEndian)
                     Array.Reverse(data);
                 return BitConverter.ToUInt32(data, 0);
@@ -80,19 +75,22 @@ namespace LibAmiibo.Data.Settings
         }
         public Variation Variation
         {
-            get { return (Variation)(Data[0x07]); }
+            get { return (Variation)(DataList[0x07]); }
         }
 
-        private Title(byte[] data)
+        private Title(ArraySegment<byte> data)
         {
             this.Data = data;
         }
 
         public static Title FromTitleID(byte[] data)
         {
-            return new Title(data);
+            return new Title(new ArraySegment<byte>(data));
         }
 
-
+        public static Title FromTitleID(ArraySegment<byte> data)
+        {
+            return new Title(data);
+        }
     }
 }

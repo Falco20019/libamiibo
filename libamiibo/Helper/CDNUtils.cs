@@ -23,10 +23,10 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using LibAmiibo.Data.Settings;
-using LibAmiibo.Data.Settings.TitleID;
 using LibAmiibo.Properties;
 using System;
+using LibAmiibo.Data.Settings.AppData;
+using LibAmiibo.Data.Settings.AppData.TitleID;
 
 namespace LibAmiibo.Helper
 {

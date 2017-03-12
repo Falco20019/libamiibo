@@ -20,25 +20,12 @@
  * THE SOFTWARE.
  */
 
-using System;
-
-namespace LibAmiibo.Data.Settings.TitleID
+namespace LibAmiibo.Data.Settings.AppData.TitleID
 {
-    [Flags]
-    public enum Category
+    public enum Variation
     {
         Normal = 0x00,
-        DlpChild = 0x01,
-        Demo = 0x02,
-        Contents = 0x03,
-        AddOnContents = 0x04,
-        Patch = 0x06,
-        CannotExecution = 0x08,
-        System = 0x10,
-        RequireBatchUpdate = 0x20,
-        NotRequireUserApproval = 0x40,
-        NotRequireRightForMount = 0x80,
-        CanSkipConvertJumpId = 0x100,
-        TWL = 0x8000
+        SystemTitle = 0x02,
+        SafeModeSystemTitle = 0x03
     }
 }

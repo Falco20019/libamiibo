@@ -22,68 +22,75 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using LibAmiibo.Data.Settings.AppData;
-using LibAmiibo.Data.Settings.UserData;
 using LibAmiibo.Helper;
 
-namespace LibAmiibo.Data.Settings
+namespace LibAmiibo.Data.Settings.UserData
 {
-    public class AmiiboSettings
+    public class AmiiboUserData
     {
         public ArraySegment<byte> CryptoBuffer { get; private set; }
-        public AmiiboUserData AmiiboUserData { get; private set; }
-        public AmiiboAppData AmiiboAppData { get; private set; }
 
         private IList<byte> CryptoBufferList
         {
             get { return CryptoBuffer as IList<byte>; }
         }
 
-        public Status Status
-        {
-            get { return (Status) (CryptoBufferList[0] & 0x30); }
-        }
-
-        public ushort AmiiboLastModifiedDateValue
-        {
-            get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x06); }
-        }
-
-        public DateTime AmiiboLastModifiedDate
+        public byte[] GetAmiiboSettingsBytes
         {
             get
             {
-                return NtagHelpers.DateTimeFromTag(AmiiboLastModifiedDateValue);
+                return new[]
+                {
+                    (byte) (CryptoBufferList[0] & 0x0F),
+                    CryptoBufferList[1]
+                };
             }
         }
 
-        public ushort WriteCounter
+        // TODO: Add Country Code from 0x01
+
+        public ushort CrcUpdateCounter
         {
-            get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x88); }
+            get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x02); }
         }
 
-        public ArraySegment<byte> Unknown8EBytes
+        public ushort AmiiboSetupDateValue
+        {
+            get { return NtagHelpers.UInt16FromTag(CryptoBuffer, 0x04); }
+        }
+
+        public DateTime AmiiboSetupDate
         {
             get
             {
-                return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x8E, 0x02);
-            }
-        }
-        public ArraySegment<byte> Signature
-        {
-            get
-            {
-                return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x90, 0x20);
+                return NtagHelpers.DateTimeFromTag(AmiiboSetupDateValue);
             }
         }
 
-        public AmiiboSettings(ArraySegment<byte> cryptoData, ArraySegment<byte> appData)
+        // TODO: This is the unique console hash
+        public uint CRC32
+        {
+            get { return NtagHelpers.UInt32FromTag(CryptoBuffer, 0x08); }
+        }
+
+        public string AmiiboNickname
+        {
+            get { return MarshalUtil.CleanInput(Encoding.BigEndianUnicode.GetString(CryptoBuffer.Array, CryptoBuffer.Offset + 0x0C, 0x14)); }
+        }
+
+        public ArraySegment<byte> OwnerMii
+        {
+            get
+            {
+                return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x20, 0x60);
+            }
+        }
+
+        public AmiiboUserData(ArraySegment<byte> cryptoData)
         {
             this.CryptoBuffer = cryptoData;
-            this.AmiiboUserData = new AmiiboUserData(cryptoData);
-            this.AmiiboAppData = new AmiiboAppData(cryptoData, appData);
         }
     }
 }

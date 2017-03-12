@@ -23,6 +23,7 @@
 using LibAmiibo.Helper;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Resources;
@@ -281,7 +282,7 @@ namespace LibAmiibo.Data.Figurine
             }
         }
 
-        private Amiibo(byte[] internalTag)
+        private Amiibo(IList<byte> internalTag)
         {
             this.StatueId = String.Format("{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}{7:X2}",
                     internalTag[0x1DC], internalTag[0x1DD], internalTag[0x1DE], internalTag[0x1DF], internalTag[0x1E0], internalTag[0x1E1], internalTag[0x1E2], internalTag[0x1E3]);
@@ -292,7 +293,7 @@ namespace LibAmiibo.Data.Figurine
             this.StatueId = charId;
         }
 
-        public static Amiibo FromInternalTag(byte[] data)
+        public static Amiibo FromInternalTag(ArraySegment<byte> data)
         {
             return new Amiibo(data);
         }

@@ -21,14 +21,39 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Text;
+using LibAmiibo.Helper;
 
-namespace LibAmiibo.Data.Settings
+namespace LibAmiibo.Data.Settings.AppData
 {
-    [Flags]
-    public enum Status
+    public class AmiiboAppData
     {
-        Uninitialized = 0,
-        UserDataInitialized = 1 << 4,
-        AppDataInitialized = 1 << 5
+        public ArraySegment<byte> CryptoBuffer { get; private set; }
+        public ArraySegment<byte> AppData { get; private set; }
+
+        private IList<byte> CryptoBufferList
+        {
+            get { return CryptoBuffer as IList<byte>; }
+        }
+
+        public Title AppDataInitializationTitleID
+        {
+            get
+            {
+                return Title.FromTitleID(new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x80, 0x08));
+            }
+        }
+
+        public uint AppID
+        {
+            get { return NtagHelpers.UInt32FromTag(CryptoBuffer, 0x8A); }
+        }
+
+        public AmiiboAppData(ArraySegment<byte> cryptoData, ArraySegment<byte> appData)
+        {
+            this.CryptoBuffer = cryptoData;
+            this.AppData = appData;
+        }
     }
 }

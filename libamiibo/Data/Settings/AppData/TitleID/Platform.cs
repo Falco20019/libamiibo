@@ -20,38 +20,14 @@
  * THE SOFTWARE.
  */
 
-using System;
-
-namespace LibAmiibo.Data.Settings.TitleID
+namespace LibAmiibo.Data.Settings.AppData.TitleID
 {
-    public static class IdRestriction
+    public enum Platform
     {
-        [Flags]
-        public enum TitleType
-        {
-            Unknown = 0xFF,
-            System = 0x01,
-            Application = 0x02,
-            Evaluation = 0x04,
-            Prototype = 0x08
-        }
-
-        internal static TitleType GetType(ulong id)
-        {
-            TitleType type = 0;
-            if (id >= 0x00000 && id <= 0x002FF)
-                type |= TitleType.System;
-            if (id >= 0x00300 && id <= 0xF7FFF)
-                type |= TitleType.Application;
-            if (id >= 0xF8000 && id <= 0xFFFFF)
-                type |= TitleType.Evaluation;
-            if (id >= 0xFF000 && id <= 0xFF3FF)
-                type |= TitleType.Prototype;
-
-            if (type != 0)
-                return type;
-
-            return TitleType.Unknown;
-        }
+        Unknown = 0,
+        Wii = 1,
+        DSi = 3,
+        N3DS = 4,
+        WiiU = 5
     }
 }
