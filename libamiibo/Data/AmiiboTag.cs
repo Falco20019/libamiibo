@@ -63,6 +63,11 @@ namespace LibAmiibo.Data
             get { return IsDecrypted && AmiiboSettings.Status.HasFlag(Status.AppDataInitialized); }
         }
 
+        public bool HasSettings
+        {
+            get { return IsDecrypted && AmiiboSettings.Status.HasFlag(Status.SettingsInitialized); }
+        }
+
         public byte[] DataSignature
         {
             get

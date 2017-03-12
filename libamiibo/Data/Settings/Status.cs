@@ -27,6 +27,7 @@ namespace LibAmiibo.Data.Settings
     [Flags]
     public enum Status
     {
+        Uninitialized = 0,
         SettingsInitialized = 1 << 4,
         AppDataInitialized = 1 << 5
     }
