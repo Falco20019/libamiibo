@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using LibAmiibo.Data.Settings.UserData.Mii;
 using LibAmiibo.Helper;
 
 namespace LibAmiibo.Data.Settings.UserData
@@ -79,15 +80,18 @@ namespace LibAmiibo.Data.Settings.UserData
             set { AmiiboNicknameBuffer.CopyFrom(value); }
         }
 
-        public ArraySegment<byte> OwnerMii
+        public AmiiboMii OwnerMii { get; }
+
+        private ArraySegment<byte> OwnerMiiBuffer
         {
             get { return new ArraySegment<byte>(CryptoBuffer.Array, CryptoBuffer.Offset + 0x20, 0x60); }
-            set { OwnerMii.CopyFrom(value); }
+            set { OwnerMiiBuffer.CopyFrom(value); }
         }
 
         public AmiiboUserData(ArraySegment<byte> cryptoData)
         {
             this.CryptoBuffer = cryptoData;
+            this.OwnerMii = new AmiiboMii(this.OwnerMiiBuffer);
         }
     }
 }

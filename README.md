@@ -33,7 +33,7 @@ Special Thanks
 ==============
 - Lucas "MacGuffen" Romo for his great work with https://docs.google.com/spreadsheets/d/1WJ4HxS9hkLquq-ATt1Rq9mioH6RDgP3qQrtYVaOdimM
 - N3vin and CheatFreak for their great work with https://docs.google.com/spreadsheets/d/19E7pMhKN6x583uB6bWVBeaTMyBPtEAC-Bk59Y6cfgxA
-- The people over at 3dbrew.org for there work on http://3dbrew.org/wiki/Amiibo
+- The people over at 3dbrew.org for there work on http://3dbrew.org/wiki/Amiibo and http://3dbrew.org/wiki/Mii
 - socram8888 for his great work on https://github.com/socram8888/amiitool
 - John "LouieGeetoo" Pray for his great work with http://www.amiibo.life
 - HouseBreaker for the CDN parts I borrowed from https://github.com/HouseBreaker/NintendoCDN-TicketParser

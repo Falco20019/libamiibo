@@ -506,6 +506,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0239,   "Mario (Modern)" },
             { 0x023A,   "Bowser (Skylanders)" },
             { 0x023B,   "Donkey Kong (Skylanders)" },
+            // TODO: Missing
             { 0x023D,   "Mewtwo" },
             { 0x023E,   "Mega Yarn Yoshi" },
             { 0x023F,   "Isabelle (ACF)" },
@@ -645,7 +646,6 @@ namespace LibAmiibo.Data.Figurine
             { 0x02E4, "Rathian and Cheval" },
             { 0x02E5, "Barioth and Ayuria" },
             { 0x02E6, "Qurupeco and Dan" },
-            // TODO: More unknown
             { 0x02E7, "Vivian (ACW)" },
             { 0x02E8, "Hopkins (ACW)" },
             { 0x02E9, "June (ACW)" },

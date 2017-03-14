@@ -62,6 +62,7 @@
     <Compile Include="Data\Settings\Status.cs" />
     <Compile Include="Data\Settings\AppData\Title.cs" />
     <Compile Include="Data\Settings\UserData\AmiiboUserData.cs" />
+    <Compile Include="Data\Settings\UserData\Mii\AmiiboMii.cs" />
     <Compile Include="Encryption\CDNKeys.cs" />
     <Compile Include="Files.cs" />
     <Compile Include="Helper\ArraySegmentExtensions.cs" />
