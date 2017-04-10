@@ -27,12 +27,13 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Resources;
+using LibAmiibo.Images;
 
 namespace LibAmiibo.Data.Figurine
 {
     public class Amiibo
     {
-        private ResourceManager resourceManager = Images.Resources.ResourceManager;
+        private readonly ResourceManager resourceManager = ExternalResourceManager.Instance.ResourceManager;
         private Image amiiboImage = null;
         private static string ImagePrefix
         {
@@ -239,7 +240,7 @@ namespace LibAmiibo.Data.Figurine
                 if (amiiboImage != null)
                     return amiiboImage;
 
-                if (AmiiboNo == 0xFFFF || StatueNameInternal == null)
+                if (resourceManager == null || AmiiboNo == 0xFFFF || StatueNameInternal == null)
                 {
                     amiiboImage = Images.Resources.empty;
                     return amiiboImage;

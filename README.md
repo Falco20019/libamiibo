@@ -12,7 +12,6 @@ To parse a tag directly from a binary (encrypted) dump, use ```LibAmiibo.Data.Am
 
 When using an encrypted binary, the AmiiboSettings and AppData information will not contain any valid information.
 
-
 Examples
 --------
 
@@ -28,6 +27,15 @@ LibAmiibo.Data.AmiiboTag amiiboTag = LibAmiibo.Data.AmiiboTag.DecryptWithKeys(en
 byte[] encryptedNtagData = System.IO.File.ReadAllBytes("mario.bin");
 LibAmiibo.Data.AmiiboTag amiiboTag = LibAmiibo.Data.AmiiboTag.FromNtagData(encryptedNtagData);
 ```
+
+Notice
+------
+The library is split into two parts: libamiibo and libamiibo.images
+
+You can use both independently:
+
+- To only use the parsing logic, it's enough to include the small libamiibo.dll and it's dependency BouncyCastle.Crypto.dll in your project and reference libamiibo.dll
+- To also include images for the amiibos (using `amiiboTag.Amiibo.AmiiboImage`), you need also include libamiibo.images.dll in your project. You don't need to reference it, just make sure the dll is copied
 
 Special Thanks
 ==============

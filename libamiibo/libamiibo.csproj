@@ -77,6 +77,7 @@
     <Compile Include="Encryption\KeygenDerivedkeys.cs" />
     <Compile Include="Encryption\KeygenMasterkeys.cs" />
     <Compile Include="Helper\NtagHelpers.cs" />
+    <Compile Include="Images\ExternalResourceManager.cs" />
     <Compile Include="Images\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,12 +91,10 @@
     </Compile>
     <Compile Include="Helper\TargaImage.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Images\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
