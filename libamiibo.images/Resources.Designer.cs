@@ -6803,6 +6803,26 @@ namespace LibAmiibo.Images {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icon_21060000ffffff02 {
+            get {
+                object obj = ResourceManager.GetObject("icon_21060000ffffff02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icon_21070000ffffff02 {
+            get {
+                object obj = ResourceManager.GetObject("icon_21070000ffffff02", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icon_22400000002b0002 {
             get {
                 object obj = ResourceManager.GetObject("icon_22400000002b0002", resourceCulture);
