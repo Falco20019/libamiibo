@@ -489,8 +489,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x2103,   "Robin" },
             { 0x2104,   "Roy" },
             { 0x2105,   "Corrin" },     // TODO: Check lists
-            { 0x2106,   "Alm" },        // TODO: Check lists
-            { 0x2107,   "Celica" },     // TODO: Check lists
+            { 0x2106,   "Alm" },
+            { 0x2107,   "Celica" },
             { 0x2240,   "Shulk" },
             { 0x2280,   "Ness" },
             { 0x2281,   "Lucas" },

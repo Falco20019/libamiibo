@@ -713,6 +713,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x035C, "Bokoblin, BotW" },
             { 0x035D, "Poochy" },
             { 0x035E, "Qbby" },
+            { 0x0360, "Alm (Fire Emblem)" },
+            { 0x0361, "Celica (Fire Emblem)" },
             //{ 0x0XXX, "Corrin" },
             //{ 0x0XXX, "Cloud Strife" },
             //{ 0x0XXX, "Bayonetta" },
