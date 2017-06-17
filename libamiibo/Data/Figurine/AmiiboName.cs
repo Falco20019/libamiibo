@@ -398,7 +398,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x016F,   "Chrissy (ACC3)" },
             { 0x0170,   "Isabelle (Dress) (ACC4)" },
             { 0x0171,   "Brewster (ACC4)" },
-            { 0x0172,   "Katarina (ACC4)" },
+            { 0x0172,   "Katrina (ACC4)" },
             { 0x0173,   "Phineas (ACC4)" },
             { 0x0174,   "Celeste (ACC4)" },
             { 0x0175,   "Tommy (ACC4)" },
