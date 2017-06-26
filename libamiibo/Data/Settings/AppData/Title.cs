@@ -96,6 +96,11 @@ namespace LibAmiibo.Data.Settings.AppData
             return new Title(new ArraySegment<byte>(data));
         }
 
+        public static Title FromTitleID(string data)
+        {
+            return Title.FromTitleID(NtagHelpers.StringToByteArrayFastest(data));
+        }
+
         public static Title FromTitleID(ArraySegment<byte> data)
         {
             return new Title(data);

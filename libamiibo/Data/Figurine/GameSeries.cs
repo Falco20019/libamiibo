@@ -30,7 +30,6 @@ namespace LibAmiibo.Data.Figurine
         private static Dictionary<int, GroupName> dict = new Dictionary<int, GroupName>
         {
             { 0x008,    new GroupName("Yoshi's Woolly World", "YWW") }, // TODO: Maybe this is Yoshi's Story?
-            { 0x010,    new GroupName("Legend of Zelda", "LOZ") },
             { 0x014,    new GroupName("Breath of the Wild", "BOW") },
             { 0x058,    new GroupName("Star Fox", "STF") },
             { 0x05C,    new GroupName("Metroid", "MET") },
@@ -67,14 +66,14 @@ namespace LibAmiibo.Data.Figurine
                 return name;
             if (id >= 0x000 && id <= 0x001)
                 return new GroupName("Super Mario", "SMA");
-            if (id >= 0x010 && id <= 0x014)
+            if (id >= 0x010 && id <= 0x013)
                 return new GroupName("Legend of Zelda", "LOZ");
             if (id >= 0x018 && id <= 0x051)
                 return new GroupName("Animal Crossing", "ACR");
             if (id >= 0x09C && id <= 0x09D)
                 return new GroupName("Mario Sports Superstars", "MSS");
             if (id >= 0x190 && id <= 0x1BD)
-                return new GroupName("Pokémon", "POK");
+                return new GroupName("Pokémon", "PKM");
 
             return null;
         }

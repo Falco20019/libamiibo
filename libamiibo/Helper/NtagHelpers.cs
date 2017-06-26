@@ -160,7 +160,7 @@ namespace LibAmiibo.Helper
         private static int GetHexVal(char hex)
         {
             int val = (int)hex;
-            return val - (val < 58 ? 48 : 55);
+            return val - (val < 58 ? 48 : val < 71 ? 55 : 87);
         }
     }
 }
