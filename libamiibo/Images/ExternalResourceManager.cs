@@ -20,7 +20,7 @@ namespace LibAmiibo.Images
                 Assembly imageAssembly = Assembly.LoadFrom(path);
                 this.ResourceManager = new ResourceManager("LibAmiibo.Images.Resources", imageAssembly);
             }
-            catch
+            catch(Exception ex)
             {
                 // This happens if the image assembly is not found!
             }

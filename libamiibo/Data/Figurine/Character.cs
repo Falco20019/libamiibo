@@ -546,7 +546,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x2102,   "Lucina" },
             { 0x2103,   "Robin" },
             { 0x2104,   "Roy" },
-			//{ 0x2105,   "Corrin" },     // TODO: Require confirmation
+            { 0x2105,   "Corrin" },
             { 0x2106,   "Alm" },
             { 0x2107,   "Celica" },
             { 0x2240,   "Shulk" },
@@ -554,6 +554,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x2281,   "Lucas" },
             { 0x22c0,   "Chibi-Robo" },
             { 0x3200,   "Sonic" },
+            { 0x3240,   "Bayonetta" },
             { 0x3340,   "PAC-MAN" },
             { 0x3480,   "Mega Man" },
             { 0x34C0,   "Ryu" },
@@ -563,8 +564,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x3503,   "Barioth" },
             { 0x3504,   "Qurupeco" },
             { 0x35C0,   "Shovel Knight" },
-            //{ 0x3840,   "Cloud Strife" },     // TODO: Require confirmation
-            //{ 0x3980,   "Bayonetta" },        // TODO: Require confirmation
+            { 0x3600,   "Cloud Strife" },
         };
 
         internal static string GetName(int id)

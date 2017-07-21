@@ -157,11 +157,14 @@ namespace LibAmiibo.Data.Figurine
             { 0x09D104, "Golf" },
             { 0x09D105, "Horse Racing" },
             { 0x199601, "Shadow" },
+            { 0x210501, "Player 2" },
+            { 0x324001, "Player 2" },
             { 0x350001, "Male rider" },
             { 0x350002, "Female rider" },
             { 0x350201, "& Cheval" },
             { 0x350301, "& Ayuria" },
             { 0x350401, "& Dan" },
+            { 0x360001, "Player 2" },
             { 0xFFFFFF, "(empty)" },
         };
 
