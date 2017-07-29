@@ -499,6 +499,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x05c0,   "Samus" },
             { 0x0600,   "Captain Falcon" },
             { 0x0640,   "Olimar" },
+            { 0x0642,   "Pikmin" },
             { 0x06c0,   "Little Mac" },
             { 0x0700,   "Wii Fit Trainer" },
             { 0x0740,   "Pit" },

@@ -46,7 +46,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0E, new GroupName("Mario Sports Superstars", "MSS") },
             { 0x0F, new GroupName("Monster Hunter", "MHU") },
             { 0x10, new GroupName("BoxBoy!", "BXB") },
-            // Missing
+            { 0x11, new GroupName("Pikmin", "PIK") },
             { 0x12, new GroupName("Fire Emblem", "FEM") },
             { 0xFF, new GroupName("(empty)", "?") },
         };
