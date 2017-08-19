@@ -20,8 +20,8 @@
  * THE SOFTWARE.
  */
 
+using StbSharp;
 using System;
-using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -99,7 +99,7 @@ namespace LibAmiibo.Helper
 
     public class IDBE3DSContext : IDBEContext
     {
-        public Bitmap SmallIcon, LargeIcon;
+        public Image SmallIcon, LargeIcon;
 
         public override string FirstTitle(Localization localization)
         {
@@ -125,7 +125,7 @@ namespace LibAmiibo.Helper
 
     public class IDBEWiiUContext : IDBEContext
     {
-        public Bitmap Image;
+        public Image Image;
 
         public override string FirstTitle(Localization localization)
         {
@@ -147,13 +147,15 @@ namespace LibAmiibo.Helper
             return true;
         }
 
-        private Bitmap LoadImage(Stream fs)
+        private Image LoadImage(Stream fs)
         {
             var data = new byte[fs.Length - fs.Position];
             fs.Read(data, 0, data.Length);
+
+            ImageReader loader = new ImageReader();
             using (MemoryStream ms = new MemoryStream(data))
             {
-                return Paloma.TargaImage.LoadTargaImage(ms);
+                return loader.Read(ms, Stb.STBI_rgb_alpha);
             }
         }
     }

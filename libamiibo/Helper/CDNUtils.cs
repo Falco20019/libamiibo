@@ -23,7 +23,6 @@
 using System.IO;
 using System.Linq;
 using System.Net;
-using LibAmiibo.Properties;
 using System;
 using LibAmiibo.Data.Settings.AppData;
 using LibAmiibo.Data.Settings.AppData.TitleID;
@@ -84,7 +83,7 @@ namespace LibAmiibo.Helper
         private static byte[] GetCachedStreamData(Title title)
         {
             var titleId = title.TitleID.ToString("X16").ToUpper();
-            var cacheFileName = Path.Combine(Settings.Default.TitleCacheDir, titleId);
+            var cacheFileName = Path.Combine(Settings.Default["TitleCacheDir"], titleId);
             if (File.Exists(cacheFileName))
             {
                 try

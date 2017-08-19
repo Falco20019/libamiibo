@@ -22,18 +22,15 @@
 
 using LibAmiibo.Helper;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Resources;
 using LibAmiibo.Images;
+using StbSharp;
+using System.Reflection;
 
 namespace LibAmiibo.Data.Figurine
 {
     public class Amiibo
     {
-        private readonly ResourceManager resourceManager = ExternalResourceManager.Instance.ResourceManager;
         private Image amiiboImage = null;
         private static string ImagePrefix
         {
@@ -233,6 +230,16 @@ namespace LibAmiibo.Data.Figurine
                 return AmiiboSetNameInternal?.ShortName ?? "UNK";
             }
         }
+        private Image Empty
+        {
+            get
+            {
+                var resFilestream = Assembly.GetExecutingAssembly().GetManifestResourceStream("LibAmiibo.Images.empty.png");
+                byte[] empty = new byte[resFilestream.Length];
+                resFilestream.Read(empty, 0, empty.Length);
+                return Stb.LoadFromMemory(empty, Stb.STBI_rgb_alpha);
+            }
+        }
         public Image AmiiboImage
         {
             get
@@ -240,36 +247,35 @@ namespace LibAmiibo.Data.Figurine
                 if (amiiboImage != null)
                     return amiiboImage;
 
-                if (resourceManager == null || AmiiboNo == 0xFFFF || StatueNameInternal == null)
+                if (AmiiboNo == 0xFFFF || StatueNameInternal == null)
                 {
-                    amiiboImage = Images.Resources.empty;
-                    return amiiboImage;
+                    return Empty;
                 }
 
                 try
                 {
-                    var correctImage = (Image)resourceManager.GetObject(ImagePrefix + StatueId.ToLower());
+                    var correctImage = ExternalResourceManager.Instance.GetImage(ImagePrefix + StatueId.ToLower() + ".png");
                     if (correctImage != null)
                     {
                         amiiboImage = correctImage;
                         return amiiboImage;
                     }
-                    
-                    foreach (DictionaryEntry entry in resourceManager.GetResourceSet(CultureInfo.InvariantCulture, true, true))
+
+                    foreach (string fieldName in ExternalResourceManager.Instance.GetNames())
                     {
-                        string fieldName = (string)entry.Key;
                         if (!fieldName.StartsWith(ImagePrefix))
                             continue;
 
-                        Image image = (Image)entry.Value;
-                        Amiibo icon = Amiibo.FromStatueId(fieldName.Substring(ImagePrefix.Length));
+                        Amiibo icon = Amiibo.FromStatueId(fieldName.Substring(ImagePrefix.Length, 16));
                         if (icon.AmiiboNo == AmiiboNo)
                         {
-                            amiiboImage = image;
+                            amiiboImage = ExternalResourceManager.Instance.GetImage(fieldName);
                             break;
                         }
                         if (amiiboImage == null && icon.CharacterId == CharacterId)
-                            amiiboImage = image;
+                        {
+                            amiiboImage = ExternalResourceManager.Instance.GetImage(fieldName);
+                        }
                     }
                 }
                 catch
@@ -277,7 +283,7 @@ namespace LibAmiibo.Data.Figurine
                 }
 
                 if (amiiboImage == null)
-                    amiiboImage = Images.Resources.empty;
+                    amiiboImage = Empty;
 
                 return amiiboImage;
             }
