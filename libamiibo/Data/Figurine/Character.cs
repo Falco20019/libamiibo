@@ -497,6 +497,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0580,   "Fox" },
             { 0x0581,   "Falco" },
             { 0x05c0,   "Samus" },
+            { 0x05c1,   "Metroid" },
             { 0x0600,   "Captain Falcon" },
             { 0x0640,   "Olimar" },
             { 0x0642,   "Pikmin" },

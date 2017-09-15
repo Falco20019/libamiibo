@@ -724,6 +724,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x0362, "Cloud - Player 2 (SSB)" },
             { 0x0363, "Corrin - Player 2 (SSB)" },
             { 0x0364, "Bayonetta - Player 2 (SSB)" },
+            { 0x0365, "Samus Aran" },
+            { 0x0366, "Metroid" },
             { 0x0369, "Inkling Girl, Neon Pink" },
             { 0x036A, "Inkling Boy, Neon Green" },
             { 0x036B, "Inkling Squid, Neon Purple" },
