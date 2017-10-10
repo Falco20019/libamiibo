@@ -51,7 +51,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0014,   "Bowser" },
             { 0x0015,   "Bowser Jr." },
             { 0x0016,   "Toon Link" },
-            { 0x0017,   "Shiek" },
+            { 0x0017,   "Sheik" },
             { 0x0018,   "Ike" },
             { 0x0019,   "Dr. Mario" },
             { 0x001A,   "Wario" },
