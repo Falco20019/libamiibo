@@ -242,7 +242,7 @@ namespace LibAmiibo.Data.Figurine
 
                 if (resourceManager == null || AmiiboNo == 0xFFFF || StatueNameInternal == null)
                 {
-                    amiiboImage = Images.Resources.empty;
+                    amiiboImage = Images.Resources.unknown;
                     return amiiboImage;
                 }
 
@@ -277,7 +277,7 @@ namespace LibAmiibo.Data.Figurine
                 }
 
                 if (amiiboImage == null)
-                    amiiboImage = Images.Resources.empty;
+                    amiiboImage = Images.Resources.unknown;
 
                 return amiiboImage;
             }
