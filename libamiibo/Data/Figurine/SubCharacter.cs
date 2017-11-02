@@ -35,7 +35,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0008ff, "Turbo Charge" },
             { 0x008001, "Yarn" },
             { 0x010001, "Toon" },
-            { 0x010101, "Shiek" },
+            { 0x010101, "Sheik" },
             { 0x010201, "-dorf" },
             { 0x018101, "Winter" },
             { 0x018102, "Festival" },
