@@ -740,6 +740,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x0371, "Mario - Wedding" },
             { 0x0372, "Peach - Wedding" },
             { 0x0373, "Bowser - Wedding" },
+            { 0x0374, "Super Mario Cereal" },
+            { 0x0375, "Detective Pikachu" },
             { 0xFFFF,   "(empty)" },
         };
 

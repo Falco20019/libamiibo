@@ -42,13 +42,14 @@ namespace LibAmiibo.Data.Figurine
             { 0x0A, new GroupName("Shovel Knight", "SHK") },
             // Missing
             { 0x0C, new GroupName("Kirby", "KIR") },
-            { 0x0D, new GroupName("Pokken", "POK") },
+            { 0x0D, new GroupName("Pokemon", "POK") },
             { 0x0E, new GroupName("Mario Sports Superstars", "MSS") },
             { 0x0F, new GroupName("Monster Hunter", "MHU") },
             { 0x10, new GroupName("BoxBoy!", "BXB") },
             { 0x11, new GroupName("Pikmin", "PIK") },
             { 0x12, new GroupName("Fire Emblem", "FEM") },
             { 0x13, new GroupName("Metroid", "MET") },
+            { 0x14, new GroupName("Kellogg's", "KLG") },
             { 0xFF, new GroupName("(empty)", "?") },
         };
 

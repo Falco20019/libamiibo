@@ -544,6 +544,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x1ac0,   "Lucario" },
             { 0x1b92,   "Greninja" },
             { 0x1d00,   "Shadow Mewtwo" },
+            { 0x1d01,   "Detective Pikachu" },
             { 0x1f00,   "Kirby" },
             { 0x1f01,   "Meta Knight" },
             { 0x1f02,   "King Dedede" },
@@ -575,6 +576,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x3504,   "Qurupeco" },
             { 0x35C0,   "Shovel Knight" },
             { 0x3600,   "Cloud Strife" },
+            { 0x3740,   "Super Mario Cereal" },
         };
 
         internal static string GetName(int id)

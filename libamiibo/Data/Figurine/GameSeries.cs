@@ -41,7 +41,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x078,    new GroupName("Classic Nintendo", "CLN") },
             { 0x07C,    new GroupName("Mii", "MII") },
             { 0x080,    new GroupName("Splatoon", "SPL") },
-            { 0x1D0,    new GroupName("Pokken", "POK") },
+            { 0x1D0,    new GroupName("Pokemon", "POK") },
             { 0x1F0,    new GroupName("Kirby", "KIR") },
             { 0x1F4,    new GroupName("BoxBoy!", "BXB") },
             { 0x210,    new GroupName("Fire Emblem", "FEM") },
