@@ -1,11 +1,13 @@
-﻿using System;
+//https://github.com/Falco20019/libamiibo
 
-namespace LibAmiibo.Helper
+using System;
+
+namespace AmiiBomb
 {
     public static class NtagHelpers
     {
-        public const int NFC3D_AMIIBO_SIZE = 552;
-        public const int NFC3D_NTAG_SIZE = 572;
+        public const int NFC3D_AMIIBO_SIZE = 540;
+        public const int NFC3D_NTAG_SIZE = 540;
 
         public static readonly byte[] CONFIG_BYTES =
         {
@@ -45,9 +47,9 @@ namespace LibAmiibo.Helper
             Array.Copy(tag, 0x0A0, intl, 0x04C, 0x168);     // Encrypted data buffer
             Array.Copy(tag, 0x034, intl, 0x1B4, 0x020);     // Tag Signature (signs 0x1D4 - 0x208)
             Array.Copy(tag, 0x000, intl, 0x1D4, 0x008);     // NTAG Serial
-            Array.Copy(tag, 0x054, intl, 0x1DC, 0x02C);     // Plaintext data
+            Array.Copy(tag, 0x054, intl, 0x1DC, 0x02C);     // Plaintext data 
 
-            // ECDSA of tag:
+            /* ECDSA of tag:
             if (tag.Length == NFC3D_NTAG_SIZE)
             {
                 Array.Copy(tag, 0x21C, intl, 0x208, 0x020);
@@ -56,7 +58,7 @@ namespace LibAmiibo.Helper
             {
                 for (int i = 0x208; i < 0x208 + 0x20; i++)
                     intl[i] = 0xFF;
-            }
+            }*/
         }
 
         public static void InternalToTag(byte[] intl, byte[] tag)
@@ -68,8 +70,6 @@ namespace LibAmiibo.Helper
             Array.Copy(intl, 0x1B4, tag, 0x034, 0x020);
             Array.Copy(intl, 0x1D4, tag, 0x000, 0x008);
             Array.Copy(intl, 0x1DC, tag, 0x054, 0x02C);
-            Array.Copy(intl, 0x208, tag, 0x21C, 0x020);
-            Array.Copy(CONFIG_BYTES, 0x000, tag, 0x208, 0x00C);
         }
 
         public static ushort UInt16FromTag(ArraySegment<byte> buffer, int offset)
@@ -148,8 +148,8 @@ namespace LibAmiibo.Helper
                 throw new Exception("The binary key cannot have an odd number of digits");
 
             byte[] arr = new byte[hex.Length >> 1];
-
-            for (int i = 0; i < hex.Length >> 1; ++i)
+          //  var hexLen = hex.Length;
+            for (int i = 0; i < (hex.Length >> 1); ++i)
             {
                 arr[i] = (byte)((GetHexVal(hex[i << 1]) << 4) + (GetHexVal(hex[(i << 1) + 1])));
             }
