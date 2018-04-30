@@ -29,34 +29,54 @@ namespace LibAmiibo.Data.Figurine
     {
         private static Dictionary<int, GroupName> dict = new Dictionary<int, GroupName>
         {
-            { 0x008,    new GroupName("Yoshi's Woolly World", "YWW") }, // TODO: Maybe this is Yoshi's Story?
-            { 0x014,    new GroupName("Breath of the Wild", "BOW") },
-            { 0x058,    new GroupName("Star Fox", "STF") },
-            { 0x05C,    new GroupName("Metroid", "MET") },
-            { 0x060,    new GroupName("F-Zero", "FZO") },
-            { 0x064,    new GroupName("Pikmin", "PIK") },
-            { 0x06C,    new GroupName("Punch-Out!!", "PUO") },
-            { 0x070,    new GroupName("Wii Fit", "WIF") },
-            { 0x074,    new GroupName("Kid Icarus", "KIC") },
-            { 0x078,    new GroupName("Classic Nintendo", "CLN") },
-            { 0x07C,    new GroupName("Mii", "MII") },
-            { 0x080,    new GroupName("Splatoon", "SPL") },
-            { 0x1D0,    new GroupName("Pokemon", "POK") },
-            { 0x1F0,    new GroupName("Kirby", "KIR") },
-            { 0x1F4,    new GroupName("BoxBoy!", "BXB") },
-            { 0x210,    new GroupName("Fire Emblem", "FEM") },
-            { 0x224,    new GroupName("Xenoblade Chronicles", "XCH") },
-            { 0x228,    new GroupName("Earthbound", "EBO") },
-            { 0x22C,    new GroupName("Chibi-Robo!", "CHI") },
-            { 0x320,    new GroupName("Sonic the Hedgehog", "STH") },
-            { 0x324,    new GroupName("Bayonetta", "BAY") },
-            { 0x334,    new GroupName("PAC-MAN", "PAC") },
-            { 0x348,    new GroupName("Mega Man", "MMA") },
-            { 0x34C,    new GroupName("Street Fighter", "SFI") },
-            { 0x350,    new GroupName("Monster Hunter", "MHU") },
-            { 0x35C,    new GroupName("Shovel Knight", "SHK") },
-            { 0x360,    new GroupName("Final Fantasy", "FFA") },
-            { 0xFFF,    new GroupName("(empty)", "?") },
+            { 0x000,    new GroupName("Super Mario", "SMA") },
+            // 0x001: ? Maybe extension of Super Mario
+            { 0x002,    new GroupName("Yoshi's Woolly World", "YWW") }, // TODO: Maybe this is Yoshi's Story?
+            // 0x003: ? Maybe extension of Yoshi
+            { 0x004,    new GroupName("Legend of Zelda", "LOZ") },
+            { 0x005,    new GroupName("Breath of the Wild", "BOW") },
+            // 0x006 - 0x014: Animal Crossing
+            // 0x015: ? Maybe extension of Animal Crossing
+            { 0x016,    new GroupName("Star Fox", "STF") },
+            { 0x017,    new GroupName("Metroid", "MET") },
+            { 0x018,    new GroupName("F-Zero", "FZO") },
+            { 0x019,    new GroupName("Pikmin", "PIK") },
+            // 0x01A: ???
+            { 0x01B,    new GroupName("Punch-Out!!", "PUO") },
+            { 0x01C,    new GroupName("Wii Fit", "WIF") },
+            { 0x01D,    new GroupName("Kid Icarus", "KIC") },
+            { 0x01E,    new GroupName("Classic Nintendo", "CLN") },
+            { 0x01F,    new GroupName("Mii", "MII") },
+            { 0x020,    new GroupName("Splatoon", "SPL") },
+            // 0x021 - 0x026: ???
+            { 0x027,    new GroupName("Mario Sports Superstars", "MSS") },
+            // 0x028 - 0x063: ???
+            // 0x064 - 0x074: Pokémon
+            // 0x075 - 0x07B: ? Maybe extension of Pokémon
+            { 0x07C,    new GroupName("Kirby", "KIR") },
+            { 0x07D,    new GroupName("BoxBoy!", "BXB") },
+            // 0x07E - 0x083: ???
+            { 0x084,    new GroupName("Fire Emblem", "FEM") },
+            // 0x085 - 0x088: ???
+            { 0x089,    new GroupName("Xenoblade Chronicles", "XCH") },
+            { 0x08A,    new GroupName("Earthbound", "EBO") },
+            { 0x08B,    new GroupName("Chibi-Robo!", "CHI") },
+            // 0x08C - 0x0C7: ???
+            { 0x0C8,    new GroupName("Sonic the Hedgehog", "STH") },
+            { 0x0C9,    new GroupName("Bayonetta", "BAY") },
+            // 0x0CA - 0x0CB: ???
+            { 0x0CD,    new GroupName("PAC-MAN", "PAC") },
+            // 0x0CE - 0x0D1: ???
+            { 0x0D2,    new GroupName("Mega Man", "MMA") },
+            { 0x0D3,    new GroupName("Street Fighter", "SFI") },
+            { 0x0D4,    new GroupName("Monster Hunter", "MHU") },
+            // 0x0D5 - 0x0D6: ???
+            { 0x0D7,    new GroupName("Shovel Knight", "SHK") },
+            { 0x0D8,    new GroupName("Final Fantasy", "FFA") },
+            // 0x0D9 - 0x0DC: ???
+            { 0x0DD,    new GroupName("Kellogs", "KLG") },
+            // 0x0DE - 0x3FE: ???
+            { 0x3FF,    new GroupName("(empty)", "?") },
         };
 
         internal static GroupName GetName(int id)
@@ -64,16 +84,10 @@ namespace LibAmiibo.Data.Figurine
             GroupName name;
             if (dict.TryGetValue(id, out name))
                 return name;
-            if (id >= 0x000 && id <= 0x001)
-                return new GroupName("Super Mario", "SMA");
-            if (id >= 0x010 && id <= 0x013)
-                return new GroupName("Legend of Zelda", "LOZ");
-            if (id >= 0x018 && id <= 0x051)
+            if (id >= 0x006 && id <= 0x014)
                 return new GroupName("Animal Crossing", "ACR");
-            if (id >= 0x09C && id <= 0x09D)
-                return new GroupName("Mario Sports Superstars", "MSS");
-            if (id >= 0x190 && id <= 0x1BD)
-                return new GroupName("Pokémon", "PKM");
+            if (id >= 0x064 && id <= 0x074)
+                return new GroupName("Pokémon", "POK");
 
             return null;
         }

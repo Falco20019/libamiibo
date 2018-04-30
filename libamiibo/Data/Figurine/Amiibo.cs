@@ -67,7 +67,8 @@ namespace LibAmiibo.Data.Figurine
         {
             get
             {
-                return int.Parse(StatueId.Substring(0, 3), System.Globalization.NumberStyles.HexNumber);
+                // Game series id only uses 10 bits:
+                return int.Parse(StatueId.Substring(0, 3), System.Globalization.NumberStyles.HexNumber) >> 2;
             }
         }
         internal GroupName GameSeriesNameInternal
@@ -95,7 +96,8 @@ namespace LibAmiibo.Data.Figurine
         {
             get
             {
-                return byte.Parse(StatueId.Substring(3, 1), System.Globalization.NumberStyles.HexNumber);
+                // Character number in series is defined by the last 6 bits:
+                return (byte)(byte.Parse(StatueId.Substring(3, 1), System.Globalization.NumberStyles.HexNumber) & 0x3F);
             }
         }
         public int CharacterId
