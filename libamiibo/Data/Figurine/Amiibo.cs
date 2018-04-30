@@ -237,7 +237,7 @@ namespace LibAmiibo.Data.Figurine
                 var resFilestream = Assembly.GetExecutingAssembly().GetManifestResourceStream("LibAmiibo.Images.empty.png");
                 byte[] empty = new byte[resFilestream.Length];
                 resFilestream.Read(empty, 0, empty.Length);
-                return Stb.LoadFromMemory(empty, Stb.STBI_rgb_alpha);
+                return StbImage.LoadFromMemory(empty, StbImage.STBI_rgb_alpha);
             }
         }
         public Image AmiiboImage

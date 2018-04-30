@@ -155,7 +155,7 @@ namespace LibAmiibo.Helper
             ImageReader loader = new ImageReader();
             using (MemoryStream ms = new MemoryStream(data))
             {
-                return loader.Read(ms, Stb.STBI_rgb_alpha);
+                return loader.Read(ms, StbImage.STBI_rgb_alpha);
             }
         }
     }

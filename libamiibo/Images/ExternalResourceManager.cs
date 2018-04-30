@@ -36,7 +36,7 @@ namespace LibAmiibo.Images
 
             byte[] bytes = new byte[resFilestream.Length];
             resFilestream.Read(bytes, 0, bytes.Length);
-            return Stb.LoadFromMemory(bytes, Stb.STBI_rgb_alpha);
+            return StbImage.LoadFromMemory(bytes, StbImage.STBI_rgb_alpha);
         }
 
         public IEnumerable<string> GetNames()
