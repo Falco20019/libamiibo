@@ -27,7 +27,7 @@ using LibAmiibo.Helper;
 
 namespace LibAmiibo.Data.Settings.AppData
 {
-    // TODO: Use http://3dsdb.com/ and http://wiiubrew.org/wiki/Title_database to resolve the titles
+    // TODO: Use http://3dsdb.com/, http://wiiubrew.org/wiki/Title_database and http://switchbrew.org/index.php?title=Title_list to resolve the titles
     public class Title
     {
         private IDBEContext context = null;
@@ -50,6 +50,7 @@ namespace LibAmiibo.Data.Settings.AppData
         {
             get { return (Platform)(NtagHelpers.UInt16FromTag(Data, 0x00)); }
         }
+        // TODO: This is only correct for N3DS and WiiU
         public Category Category
         {
             get { return (Category)(NtagHelpers.UInt16FromTag(Data, 0x02)); }
@@ -58,6 +59,7 @@ namespace LibAmiibo.Data.Settings.AppData
         {
             get { return NtagHelpers.UInt64FromTag(Data, 0x00); }
         }
+        // TODO: This is only correct for N3DS and WiiU
         public uint UniqueID
         {
             get
@@ -69,10 +71,12 @@ namespace LibAmiibo.Data.Settings.AppData
                 return BitConverter.ToUInt32(data, 0);
             }
         }
+        // TODO: This is only correct for N3DS and WiiU
         public IdRestriction.TitleType UniqueIDType
         {
             get { return IdRestriction.GetType(UniqueID); }
         }
+        // TODO: This is only correct for N3DS and WiiU
         public Variation Variation
         {
             get { return (Variation)(DataList[0x07]); }

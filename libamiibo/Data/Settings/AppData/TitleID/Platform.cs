@@ -24,10 +24,11 @@ namespace LibAmiibo.Data.Settings.AppData.TitleID
 {
     public enum Platform
     {
-        Unknown = 0,
-        Wii = 1,
-        DSi = 3,
-        N3DS = 4,
-        WiiU = 5
+        Unknown = 0x000,
+        Wii     = 0x001,
+        DSi     = 0x003,
+        N3DS    = 0x004,
+        WiiU    = 0x005,
+        Switch  = 0x100
     }
 }

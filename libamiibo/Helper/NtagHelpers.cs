@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace LibAmiibo.Helper
 {
@@ -72,54 +73,65 @@ namespace LibAmiibo.Helper
             Array.Copy(CONFIG_BYTES, 0x000, tag, 0x208, 0x00C);
         }
 
-        public static ushort UInt16FromTag(ArraySegment<byte> buffer, int offset)
+        public static ushort UInt16FromTag(ArraySegment<byte> buffer, int offset, bool useLittleEndian = false)
         {
             var data = new byte[0x02];
             Array.Copy(buffer.Array, buffer.Offset + offset, data, 0, data.Length);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(data);
+            ApplyByteOrder(data, useLittleEndian);
             return BitConverter.ToUInt16(data, 0);
         }
 
-        public static void UInt16ToTag(ArraySegment<byte> buffer, int offset, ushort value)
+        public static void UInt16ToTag(ArraySegment<byte> buffer, int offset, ushort value, bool useLittleEndian = false)
         {
             var data = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(data);
+            ApplyByteOrder(data, useLittleEndian);
             buffer.CopyFrom(data, 0, offset, data.Length);
         }
 
-        public static uint UInt32FromTag(ArraySegment<byte> buffer, int offset)
+        public static uint UInt24FromTag(ArraySegment<byte> buffer, int offset, bool useLittleEndian = false)
         {
+            var useLE = useLittleEndian ^ BitConverter.IsLittleEndian;
             var data = new byte[0x04];
-            Array.Copy(buffer.Array, buffer.Offset + offset, data, 0, data.Length);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(data);
+            Array.Copy(buffer.Array, buffer.Offset + offset, data, useLE ? 1 : 0, data.Length);
+            ApplyByteOrder(data, useLittleEndian);
             return BitConverter.ToUInt32(data, 0);
         }
 
-        public static void UInt32ToTag(ArraySegment<byte> buffer, int offset, uint value)
+        public static void UInt24ToTag(ArraySegment<byte> buffer, int offset, uint value, bool useLittleEndian = false)
+        {
+            var useLE = useLittleEndian ^ BitConverter.IsLittleEndian;
+            var data = BitConverter.GetBytes(value);
+            ApplyByteOrder(data, useLittleEndian);
+            buffer.CopyFrom(data, useLE ? 1 : 0, offset, 3);
+        }
+
+        public static uint UInt32FromTag(ArraySegment<byte> buffer, int offset, bool useLittleEndian = false)
+        {
+            var data = new byte[0x04];
+            Array.Copy(buffer.Array, buffer.Offset + offset, data, 0, data.Length);
+            ApplyByteOrder(data, useLittleEndian);
+            return BitConverter.ToUInt32(data, 0);
+        }
+
+        public static void UInt32ToTag(ArraySegment<byte> buffer, int offset, uint value, bool useLittleEndian = false)
         {
             var data = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(data);
+            ApplyByteOrder(data, useLittleEndian);
             buffer.CopyFrom(data, 0, offset, data.Length);
         }
 
-        public static ulong UInt64FromTag(ArraySegment<byte> buffer, int offset)
+        public static ulong UInt64FromTag(ArraySegment<byte> buffer, int offset, bool useLittleEndian = false)
         {
             var data = new byte[0x08];
             Array.Copy(buffer.Array, buffer.Offset + offset, data, 0, data.Length);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(data);
+            ApplyByteOrder(data, useLittleEndian);
             return BitConverter.ToUInt64(data, 0);
         }
 
-        public static void UInt64ToTag(ArraySegment<byte> buffer, int offset, ulong value)
+        public static void UInt64ToTag(ArraySegment<byte> buffer, int offset, ulong value, bool useLittleEndian = false)
         {
             var data = BitConverter.GetBytes(value);
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(data);
+            ApplyByteOrder(data, useLittleEndian);
             buffer.CopyFrom(data, 0, offset, data.Length);
         }
 
@@ -140,6 +152,20 @@ namespace LibAmiibo.Helper
             result <<= 5;
             result |= value.Day;
             return (ushort) result;
+        }
+
+        public static void ApplyByteOrder(byte[] data, bool forceUseLittleEndian = false)
+        {
+            if (forceUseLittleEndian ^ BitConverter.IsLittleEndian)
+                Array.Reverse(data);
+        }
+
+        public static string ByteArrayToString(byte[] bytes)
+        {
+            var hex = new StringBuilder(bytes.Length * 2);
+            foreach (var b in bytes)
+                hex.AppendFormat("{0:x2}", b);
+            return hex.ToString();
         }
 
         public static byte[] StringToByteArrayFastest(string hex)

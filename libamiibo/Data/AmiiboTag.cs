@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using LibAmiibo.Data.Figurine;
 using LibAmiibo.Data.Settings;
 using LibAmiibo.Helper;
@@ -83,6 +84,15 @@ namespace LibAmiibo.Data
             get { return IsDecrypted && AmiiboSettings.Status.HasFlag(Status.UserDataInitialized); }
         }
 
+        public ArraySegment<byte> LockBytesCC
+        {
+            get
+            {
+                return new ArraySegment<byte>(InternalTag.Array, 0x000, 0x008);
+            }
+            set { LockBytesCC.CopyFrom(value); }
+        }
+
         public ArraySegment<byte> DataSignature
         {
             get
@@ -136,12 +146,19 @@ namespace LibAmiibo.Data
             set { NtagSerial.CopyFrom(value); }
         }
 
-        public string UID
+        public byte[] UID
         {
             get
             {
-                IList<byte> ntagSerial = this.NtagSerial;
-                return String.Format("{0:X2}{1:X2}{2:X2}{3:X2}{4:X2}{5:X2}{6:X2}", ntagSerial[0], ntagSerial[1], ntagSerial[2], ntagSerial[4], ntagSerial[5], ntagSerial[6], ntagSerial[7]);
+                IList<byte> ntagSerial = NtagSerial;
+                return new[] { ntagSerial[0], ntagSerial[1], ntagSerial[2], ntagSerial[4], ntagSerial[5], ntagSerial[6], ntagSerial[7] };
+            }
+            set
+            {
+                var bcc0 = (byte)(0x88 ^ value[0] ^ value[1] ^ value[2]);
+                var bcc1 = (byte)(value[3] ^ value[4] ^ value[5] ^ value[6]);
+                NtagSerial.CopyFrom(new [] {value[0], value[1], value[2], bcc0, value[3], value[4], value[5], value[6]});
+                LockBytesCC.CopyFrom(new[] {bcc1});
             }
         }
 
@@ -202,19 +219,37 @@ namespace LibAmiibo.Data
             return encryptedData;
         }
 
+        public void RandomizeUID()
+        {
+            var rand = new Random();
+            var bytes = new byte[7];
+            rand.NextBytes(bytes);
+            bytes[0] = 0x04; // NXP manufacturer code
+            if (bytes[4] == 0x88)
+                bytes[4]++; // This must not be 0x88. Just increasing one to avoid the case when another random would result in 0x88
+            UID = bytes;
+        }
+
+        public bool IsUidValid()
+        {
+            var uid = UID;
+            var bcc0In = NtagSerial.Skip(3).First();
+            var bcc1In = LockBytesCC.First();
+            var bcc0Out = (byte)(0x88 ^ uid[0] ^ uid[1] ^ uid[2]);
+            var bcc1Out = (byte)(uid[3] ^ uid[4] ^ uid[5] ^ uid[6]);
+            return bcc0In == bcc0Out && bcc1In == bcc1Out & uid[0] == 0x04 && uid[4] != 0x88;
+        }
+
         public bool IsNtagECDSASignatureValid()
         {
-            if (NtagECDSASignature.Count != 0x20 || NtagSerial.Count != 8)
+            var uid = UID;
+            if (NtagECDSASignature.Count != 0x20 || uid.Length != 7)
                 return false;
 
             var r = new byte[NtagECDSASignature.Count / 2];
             var s = new byte[NtagECDSASignature.Count / 2];
             Array.Copy(NtagECDSASignature.Array, NtagECDSASignature.Offset, r, 0, r.Length);
             Array.Copy(NtagECDSASignature.Array, NtagECDSASignature.Offset + r.Length, s, 0, s.Length);
-
-            var uid = new byte[7];
-            Array.Copy(NtagSerial.Array, NtagSerial.Offset + 0, uid, 0, 3);
-            Array.Copy(NtagSerial.Array, NtagSerial.Offset + 4, uid, 3, 4);
 
             var curve = SecNamedCurves.GetByName("secp128r1");
             var curveSpec = new ECDomainParameters(curve.Curve, curve.G, curve.N, curve.H, curve.GetSeed());
