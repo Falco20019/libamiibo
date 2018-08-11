@@ -519,6 +519,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x0800,   "Inkling" },
             { 0x0801,   "Callie" },
             { 0x0802,   "Marie" },
+            { 0x0803,   "Pearl" },
+            { 0x0804,   "Marina" },
             { 0x09C0,   "Mario (MSS)" },
             { 0x09C1,   "Luigi (MSS)" },
             { 0x09C2,   "Peach (MSS)" },
