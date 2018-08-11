@@ -19,9 +19,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
+ 
 using System.Drawing;
 using System.IO;
+using Image = StbSharp.Image;
 
 namespace LibAmiibo.Helper
 {
@@ -181,7 +182,7 @@ namespace LibAmiibo.Helper
             }
         }
 
-        private static void DecodeTile(int iconSize, int tileSize, int ax, int ay, Bitmap bmp, Stream fs, PixelFormat pixelFormat)
+        private static void DecodeTile(int iconSize, int tileSize, int ax, int ay, Image bmp, Stream fs, PixelFormat pixelFormat)
         {
             if (tileSize == 0)
             {
@@ -194,7 +195,7 @@ namespace LibAmiibo.Helper
                         DecodeTile(tileSize, tileSize / 2, x + ax, y + ay, bmp, fs, pixelFormat);
         }
 
-        private static void EncodeTile(int iconSize, int tileSize, int ax, int ay, Bitmap bmp, Stream fs, PixelFormat pixelFormat)
+        private static void EncodeTile(int iconSize, int tileSize, int ax, int ay, Image bmp, Stream fs, PixelFormat pixelFormat)
         {
             if (tileSize == 0)
             {
@@ -207,22 +208,48 @@ namespace LibAmiibo.Helper
                         EncodeTile(tileSize, tileSize / 2, x + ax, y + ay, bmp, fs, pixelFormat);
         }
 
-        public static Bitmap ReadImageFromStream(Stream fs, int width, int height, PixelFormat pixelFormat)
+        public static Image ReadImageFromStream(Stream fs, int width, int height, PixelFormat pixelFormat)
         {
-            var bmp = new Bitmap(width, height);
+            Image image = new Image
+            {
+                Width = width,
+                Height = height,
+                Comp = 4,
+                Data = new byte[width * height * 4]
+            };
             for (var y = 0; y < height; y += 8)
                 for (var x = 0; x < width; x += 8)
-                    DecodeTile(8, 8, x, y, bmp, fs, pixelFormat);
-            return bmp;
+                    DecodeTile(8, 8, x, y, image, fs, pixelFormat);
+            return image;
         }
 
         public static void WriteImageToStream(Image source, Stream fs, PixelFormat pixelFormat)
         {
-            var bmp = new Bitmap(source);
-            for (var y = 0; y < bmp.Height; y += 8)
-                for (var x = 0; x < bmp.Width; x += 8)
-                    EncodeTile(8, 8, 0, 0, bmp, fs, pixelFormat);
+            for (var y = 0; y < source.Height; y += 8)
+                for (var x = 0; x < source.Width; x += 8)
+                    EncodeTile(8, 8, 0, 0, source, fs, pixelFormat);
         }
     }
+}
 
+static class Extensions
+{
+    public static void SetPixel(this Image img, int x, int y, Color color)
+    {
+        int offset = (y * img.Width + x) * img.Comp;
+        img.Data[offset + 0] = color.R;
+        img.Data[offset + 1] = color.G;
+        img.Data[offset + 2] = color.B;
+        img.Data[offset + 3] = color.A;
+    }
+
+    public static Color GetPixel(this Image img, int x, int y)
+    {
+        int offset = (y * img.Width + x) * img.Comp;
+        var red = img.Data[offset + 0];
+        var green = img.Data[offset + 1];
+        var blue = img.Data[offset + 2];
+        var alpha = img.Data[offset + 3];
+        return Color.FromArgb(alpha, red, green, blue);
+    }
 }

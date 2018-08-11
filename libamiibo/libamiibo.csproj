@@ -1,116 +1,34 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2AF0661E-C1E8-4401-AE23-BA72C2323106}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>netstandard2.0;net461</TargetFrameworks>
     <RootNamespace>LibAmiibo</RootNamespace>
     <AssemblyName>libamiibo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <None Remove="Images\empty.png" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Data\AmiiboTag.cs" />
-    <Compile Include="Data\Settings\AppData\AmiiboAppData.cs" />
-    <Compile Include="Data\Figurine\Amiibo.cs" />
-    <Compile Include="Data\Figurine\AmiiboName.cs" />
-    <Compile Include="Data\Figurine\AmiiboSet.cs" />
-    <Compile Include="Data\Figurine\Character.cs" />
-    <Compile Include="Data\Figurine\GameSeries.cs" />
-    <Compile Include="Data\Figurine\SubCharacter.cs" />
-    <Compile Include="Data\Figurine\ToyType.cs" />
-    <Compile Include="Data\Settings\AmiiboSettings.cs" />
-    <Compile Include="Data\Settings\AppData\TitleID\Variation.cs" />
-    <Compile Include="Data\Settings\AppData\TitleID\Category.cs" />
-    <Compile Include="Data\Settings\AppData\TitleID\IdRestriction.cs" />
-    <Compile Include="Data\Settings\AppData\TitleID\Platform.cs" />
-    <Compile Include="Data\Settings\Status.cs" />
-    <Compile Include="Data\Settings\AppData\Title.cs" />
-    <Compile Include="Data\Settings\UserData\AmiiboUserData.cs" />
-    <Compile Include="Data\Settings\UserData\Mii\AmiiboMii.cs" />
-    <Compile Include="Encryption\CDNKeys.cs" />
-    <Compile Include="Files.cs" />
-    <Compile Include="Helper\ArraySegmentExtensions.cs" />
-    <Compile Include="Helper\CDNUtils.cs" />
-    <Compile Include="Helper\GroupName.cs" />
-    <Compile Include="Helper\IDBEUtils.cs" />
-    <Compile Include="Helper\ImageUtil.cs" />
-    <Compile Include="Helper\MarshalUtil.cs" />
-    <Compile Include="Helper\NativeHelpers.cs" />
-    <Compile Include="Encryption\AmiiboKeys.cs" />
-    <Compile Include="Encryption\DrbgCtx.cs" />
-    <Compile Include="Encryption\KeygenDerivedkeys.cs" />
-    <Compile Include="Encryption\KeygenMasterkeys.cs" />
-    <Compile Include="Helper\NtagHelpers.cs" />
-    <Compile Include="Images\ExternalResourceManager.cs" />
-    <Compile Include="Images\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Helper\TargaImage.cs" />
+    <EmbeddedResource Include="Images\empty.png" />
   </ItemGroup>
+
   <ItemGroup>
-    <EmbeddedResource Include="Images\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.8.1.2" />
+    <PackageReference Include="StbSharp" Version="0.4.1.22" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
