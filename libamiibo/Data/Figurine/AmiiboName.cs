@@ -744,7 +744,9 @@ namespace LibAmiibo.Data.Figurine
             { 0x0375, "Detective Pikachu" },
             { 0x0376, "Pearl" },
             { 0x0377, "Marina" },
-            { 0xFFFF,   "(empty)" },
+            // TODO: Something missing here
+            { 0x0379, "Mega Man" },
+            { 0xFFFF, "(empty)" },
         };
 
         internal static string GetName(int id)
