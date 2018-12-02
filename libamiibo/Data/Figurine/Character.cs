@@ -569,6 +569,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x3200,   "Sonic" },
             { 0x3240,   "Bayonetta" },
             { 0x3340,   "PAC-MAN" },
+            { 0x3380,   "Solaire of Astora" },
             { 0x3480,   "Mega Man" },
             { 0x34C0,   "Ryu" },
             { 0x3500,   "One-Eyed Rathalos" },

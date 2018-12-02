@@ -66,7 +66,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x0C9,    new GroupName("Bayonetta", "BAY") },
             // 0x0CA - 0x0CB: ???
             { 0x0CD,    new GroupName("PAC-MAN", "PAC") },
-            // 0x0CE - 0x0D1: ???
+            { 0x0CE,    new GroupName("Dark Souls", "DKS") },
+            // 0x0CF - 0x0D1: ???
             { 0x0D2,    new GroupName("Mega Man", "MMA") },
             { 0x0D3,    new GroupName("Street Fighter", "SFI") },
             { 0x0D4,    new GroupName("Monster Hunter", "MHU") },

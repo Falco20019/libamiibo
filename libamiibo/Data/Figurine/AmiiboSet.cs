@@ -49,7 +49,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x11, new GroupName("Pikmin", "PIK") },
             { 0x12, new GroupName("Fire Emblem", "FEM") },
             { 0x13, new GroupName("Metroid", "MET") },
-            { 0x14, new GroupName("Kellogg's", "KLG") },
+            { 0x14, new GroupName("Miscellaneous", "MSC") },
             { 0x15, new GroupName("Mega Man", "MMA") },
             { 0xFF, new GroupName("(empty)", "?") },
         };
