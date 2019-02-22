@@ -747,14 +747,18 @@ namespace LibAmiibo.Data.Figurine
             { 0x0378, "Solaire of Astora" },
             // TODO: Something missing here
             { 0x0379, "Mega Man" },
+            { 0x037B, "King K. Rool" },
             { 0x037E, "Wolf" },
             { 0x037F, "Ridley" },
             // TODO: Something missing here
+            { 0x0381, "Ice Climbers (SSB)" },
             { 0x0382, "Inkling (SSB)" },
             // TODO: Something missing here
+            { 0x038D, "Piranha Plant (SSB)" },
             { 0x038E, "Octoling Girl" },
             { 0x038F, "Octoling Boy" },
             { 0x0390, "Octoling Octopus" },
+            { 0x0391, "Loot Goblin" },
             { 0xFFFF, "(empty)" },
         };
 

@@ -44,7 +44,9 @@ namespace LibAmiibo.Data.Figurine
             { 0x0015,   "Goomba" },
             { 0x0017,   "Boo" },
             { 0x0023,   "Koopa Troopa" },
+            { 0x0024,   "Piranha Plant" },
             { 0x0080,   "Poochy" },
+            { 0x00C0,   "King K. Rool" },
             { 0x0100,   "Link" },
             { 0x0101,   "Zelda" },
             { 0x0102,   "Ganon" },
@@ -517,7 +519,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x0780,   "Mr. G&W" },
             { 0x0781,   "R.O.B." },
             { 0x0782,   "Duck Hunt" },
-            { 0x07c0,   "Mii" },
+            { 0x078F,   "Ice Climbers" },
+            { 0x07C0,   "Mii" },
             { 0x0800,   "Inkling" },
             { 0x0801,   "Callie" },
             { 0x0802,   "Marie" },
@@ -583,6 +586,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x35C0,   "Shovel Knight" },
             { 0x3600,   "Cloud Strife" },
             { 0x3740,   "Super Mario Cereal" },
+            { 0x38C0,   "Loot Goblin" },
         };
 
         internal static string GetName(int id)

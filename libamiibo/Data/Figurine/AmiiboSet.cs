@@ -51,6 +51,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x13, new GroupName("Metroid", "MET") },
             { 0x14, new GroupName("Miscellaneous", "MSC") },
             { 0x15, new GroupName("Mega Man", "MMA") },
+            { 0x16, new GroupName("Diablo", "DBL") },
             { 0xFF, new GroupName("(empty)", "?") },
         };
 

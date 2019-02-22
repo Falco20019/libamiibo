@@ -32,7 +32,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x000,    new GroupName("Super Mario", "SMA") },
             // 0x001: ? Maybe extension of Super Mario
             { 0x002,    new GroupName("Yoshi's Woolly World", "YWW") }, // TODO: Maybe this is Yoshi's Story?
-            // 0x003: ? Maybe extension of Yoshi
+            { 0x003,    new GroupName("Donkey Kong", "DKK") },
             { 0x004,    new GroupName("Legend of Zelda", "LOZ") },
             { 0x005,    new GroupName("Breath of the Wild", "BOW") },
             // 0x006 - 0x014: Animal Crossing
@@ -76,6 +76,8 @@ namespace LibAmiibo.Data.Figurine
             { 0x0D8,    new GroupName("Final Fantasy", "FFA") },
             // 0x0D9 - 0x0DC: ???
             { 0x0DD,    new GroupName("Kellogs", "KLG") },
+            // 0x0DE - 0x3FE: ???
+            { 0x0E3,    new GroupName("Diablo", "DBL") },
             // 0x0DE - 0x3FE: ???
             { 0x3FF,    new GroupName("(empty)", "?") },
         };
