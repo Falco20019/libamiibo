@@ -578,6 +578,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x3380,   "Solaire of Astora" },
             { 0x3480,   "Mega Man" },
             { 0x34C0,   "Ryu" },
+            { 0x34C1,   "Ken" },
             { 0x3500,   "One-Eyed Rathalos" },
             { 0x3501,   "Nabiru" },
             { 0x3502,   "Rathian" },
