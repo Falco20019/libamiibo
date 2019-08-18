@@ -51,8 +51,8 @@ namespace LibAmiibo.Data.Figurine
             // 0x021 - 0x026: ???
             { 0x027,    new GroupName("Mario Sports Superstars", "MSS") },
             // 0x028 - 0x063: ???
-            // 0x064 - 0x074: Pokémon
-            // 0x075 - 0x07B: ? Maybe extension of Pokémon
+            // 0x064 - 0x075: Pokémon
+            // 0x076 - 0x07B: ? Maybe extension of Pokémon
             { 0x07C,    new GroupName("Kirby", "KIR") },
             { 0x07D,    new GroupName("BoxBoy!", "BXB") },
             // 0x07E - 0x083: ???
@@ -89,7 +89,7 @@ namespace LibAmiibo.Data.Figurine
                 return name;
             if (id >= 0x006 && id <= 0x014)
                 return new GroupName("Animal Crossing", "ACR");
-            if (id >= 0x064 && id <= 0x074)
+            if (id >= 0x064 && id <= 0x075)
                 return new GroupName("Pokémon", "POK");
 
             return null;

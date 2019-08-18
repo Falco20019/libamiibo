@@ -749,12 +749,18 @@ namespace LibAmiibo.Data.Figurine
             { 0x0379, "Mega Man" },
             { 0x037A, "Daisy (SSB)" },
             { 0x037B, "King K. Rool (SSB)" },
-            { 0x037C, "Young Link (SSB" },
+            { 0x037C, "Young Link (SSB)" },
+            { 0x037D, "Isabelle (SSB)" },
             { 0x037E, "Wolf (SSB)" },
             { 0x037F, "Ridley (SSB)" },
             // TODO: Something missing here
             { 0x0381, "Ice Climbers (SSB)" },
             { 0x0382, "Inkling (SSB)" },
+            // TODO: Something missing here
+            { 0x0385, "Pichu (SSB)" },
+            // TODO: Something missing here
+            { 0x0387, "Pokémon Trainer (SSB)" },
+            // TODO: Something missing here
             { 0x0389, "Ken (SSB)" },
             // TODO: Something missing here
             { 0x038D, "Piranha Plant (SSB)" },
