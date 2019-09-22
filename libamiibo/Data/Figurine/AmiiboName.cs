@@ -756,18 +756,22 @@ namespace LibAmiibo.Data.Figurine
             // TODO: Something missing here
             { 0x0381, "Ice Climbers (SSB)" },
             { 0x0382, "Inkling (SSB)" },
-            // TODO: Something missing here
+            { 0x0383, "Ivysaur (SSB)" },
+            { 0x0384, "Squirtle (SSB)" },
             { 0x0385, "Pichu (SSB)" },
             // TODO: Something missing here
             { 0x0387, "Pokémon Trainer (SSB)" },
             // TODO: Something missing here
             { 0x0389, "Ken (SSB)" },
+            { 0x038A, "Snake (SSB)" },
             // TODO: Something missing here
             { 0x038D, "Piranha Plant (SSB)" },
             { 0x038E, "Octoling Girl" },
             { 0x038F, "Octoling Boy" },
             { 0x0390, "Octoling Octopus" },
             { 0x0391, "Loot Goblin" },
+            // TODO: Something missing here
+            { 0x0399, "Link (Link's Awakening)" },
             { 0xFFFF, "(empty)" },
         };
 

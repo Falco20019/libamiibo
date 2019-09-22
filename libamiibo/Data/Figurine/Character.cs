@@ -545,7 +545,9 @@ namespace LibAmiibo.Data.Figurine
             { 0x09CF,   "Rosalina (MSS)" },
             { 0x09D0,   "Metal Mario (MSS)" },
             { 0x09D1,   "Pink Gold Peach (MSS)" },
+            { 0x1902,   "Ivysaur" },
             { 0x1906,   "Charizard" },
+            { 0x1907,   "Squirtle" },
             { 0x1919,   "Pikachu" },
             { 0x1927,   "Jigglypuff" },
             { 0x1996,   "Mewtwo" },
@@ -589,6 +591,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x35C0,   "Shovel Knight" },
             { 0x3600,   "Cloud Strife" },
             { 0x3740,   "Super Mario Cereal" },
+            { 0x3780,   "Snake" },
             { 0x38C0,   "Loot Goblin" },
         };
 
