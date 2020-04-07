@@ -759,11 +759,12 @@ namespace LibAmiibo.Data.Figurine
             { 0x0383, "Ivysaur (SSB)" },
             { 0x0384, "Squirtle (SSB)" },
             { 0x0385, "Pichu (SSB)" },
-            // TODO: Something missing here
+            { 0x0386, "Incineroar (SSB)" },
             { 0x0387, "Pokémon Trainer (SSB)" },
-            // TODO: Something missing here
+            { 0x0388, "Chrom (SSB)" },
             { 0x0389, "Ken (SSB)" },
             { 0x038A, "Snake (SSB)" },
+            { 0x038B, "Simon (SSB)" },
             // TODO: Something missing here
             { 0x038D, "Piranha Plant (SSB)" },
             { 0x038E, "Octoling Girl" },

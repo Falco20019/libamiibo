@@ -77,7 +77,8 @@ namespace LibAmiibo.Data.Figurine
             // 0x0D9 - 0x0DC: ???
             { 0x0DD,    new GroupName("Kellogs", "KLG") },
             { 0x0DE,    new GroupName("Metal Gear Solid", "MGS") },
-            // 0x0DF - 0x3FE: ???
+            { 0x0DF,    new GroupName("Castlevania", "CLV") },
+            // 0x0E0 - 0x3FE: ???
             { 0x0E0,    new GroupName("Jikkyou Powerful Pro Baseball", "PPB") },
             // 0x0E1 - 0x3E2: ???
             { 0x0E3,    new GroupName("Diablo", "DBL") },
