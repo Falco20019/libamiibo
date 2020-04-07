@@ -771,6 +771,12 @@ namespace LibAmiibo.Data.Figurine
             { 0x0390, "Octoling Octopus" },
             { 0x0391, "Loot Goblin" },
             // TODO: Something missing here
+            { 0x0393, "Pawapuro (Powerful Pro Baseball)" },
+            { 0x0394, "Ikari (Powerful Pro Baseball)" },
+            { 0x0395, "Daijobu (Powerful Pro Baseball)" },
+            { 0x0396, "Hayakawa (Powerful Pro Baseball)" },
+            { 0x0397, "Yabe (Powerful Pro Baseball)" },
+            { 0x0398, "Ganda (Powerful Pro Baseball)" },
             { 0x0399, "Link (Link's Awakening)" },
             { 0xFFFF, "(empty)" },
         };

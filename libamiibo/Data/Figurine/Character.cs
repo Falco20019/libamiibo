@@ -592,6 +592,12 @@ namespace LibAmiibo.Data.Figurine
             { 0x3600,   "Cloud Strife" },
             { 0x3740,   "Super Mario Cereal" },
             { 0x3780,   "Snake" },
+            { 0x3800,   "Pawapuro (Powerful Pro Baseball)" },
+            { 0x3801,   "Ikari (Powerful Pro Baseball)" },
+            { 0x3802,   "Daijobu (Powerful Pro Baseball)" },
+            { 0x3803,   "Hayakawa (Powerful Pro Baseball)" },
+            { 0x3804,   "Yabe (Powerful Pro Baseball)" },
+            { 0x3805,   "Ganda (Powerful Pro Baseball)" },
             { 0x38C0,   "Loot Goblin" },
         };
 
