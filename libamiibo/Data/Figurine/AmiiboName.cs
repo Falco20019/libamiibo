@@ -735,6 +735,9 @@ namespace LibAmiibo.Data.Figurine
             { 0x0369, "Inkling Girl, Neon Pink" },
             { 0x036A, "Inkling Boy, Neon Green" },
             { 0x036B, "Inkling Squid, Neon Purple" },
+            { 0x036C, "Plague Knight" },
+            { 0x036D, "Specter Knight" },
+            { 0x036E, "King Knight" },
             { 0x036F, "Chrom" },
             { 0x0370, "Tiki" },
             { 0x0371, "Mario - Wedding" },
@@ -771,7 +774,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x038F, "Octoling Boy" },
             { 0x0390, "Octoling Octopus" },
             { 0x0391, "Loot Goblin" },
-            // TODO: Something missing here
+            { 0x0392, "Shovel Knight (Gold Edition)" },
             { 0x0393, "Pawapuro (Powerful Pro Baseball)" },
             { 0x0394, "Ikari (Powerful Pro Baseball)" },
             { 0x0395, "Daijobu (Powerful Pro Baseball)" },
