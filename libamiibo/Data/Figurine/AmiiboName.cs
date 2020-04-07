@@ -756,7 +756,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x037D, "Isabelle (SSB)" },
             { 0x037E, "Wolf (SSB)" },
             { 0x037F, "Ridley (SSB)" },
-            // TODO: Something missing here
+            { 0x0380, "Dark Samus (SSB)" },
             { 0x0381, "Ice Climbers (SSB)" },
             { 0x0382, "Inkling (SSB)" },
             { 0x0383, "Ivysaur (SSB)" },
@@ -768,7 +768,7 @@ namespace LibAmiibo.Data.Figurine
             { 0x0389, "Ken (SSB)" },
             { 0x038A, "Snake (SSB)" },
             { 0x038B, "Simon (SSB)" },
-            // TODO: Something missing here
+            { 0x038C, "Richter (SSB)" },
             { 0x038D, "Piranha Plant (SSB)" },
             { 0x038E, "Octoling Girl" },
             { 0x038F, "Octoling Boy" },
