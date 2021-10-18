@@ -53,6 +53,8 @@ namespace LibAmiibo.Helper
                 metadataUrl = $"https://idbe-ctr.cdn.nintendo.net/icondata/{10}/{titleId}.idbe";
             else if (title.Platform == Platform.WiiU)
                 metadataUrl = $"https://idbe-wup.cdn.nintendo.net/icondata/{10}/{titleId}.idbe";
+            //else if (title.Platform == Platform.Switch) // TODO: Not working yet!
+            //    metadataUrl = $"https://idbe-hac.cdn.nintendo.net/icondata/{10}/{titleId}.idbe";
             else
             {
                 Console.Error.WriteLine("Wrong platform");

@@ -26,12 +26,14 @@ using System.IO;
 using System.Linq;
 using LibAmiibo.Data.Figurine;
 using LibAmiibo.Data.Settings;
+using LibAmiibo.Data.Settings.AppData;
 using LibAmiibo.Helper;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.Sec;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
+using LibAmiibo.Data.Settings.AppData.Games;
 
 namespace LibAmiibo.Data
 {
@@ -273,6 +275,22 @@ namespace LibAmiibo.Data
 
                 return signer.VerifySignature(ms.ToArray());
             }
+        }
+
+        public void InitializeAppData<T>() where T: IAppDataInitializer, new()
+        {
+            var factory = new T();
+            var settings = this.AmiiboSettings;
+            var appData = settings.AmiiboAppData;
+
+            appData.AppDataInitializationTitleID = factory.GetInitializationTitleIDs().First();
+            appData.AppID = factory.GetAppID() ?? throw new InvalidOperationException("The AppID was not found");
+            settings.Status |= Status.AppDataInitialized;
+            settings.AmiiboLastModifiedDate = DateTime.UtcNow.Date;
+            settings.WriteCounter++;
+
+            factory.InitializeAppData(this);
+            this.WriteCounter++;
         }
     }
 }

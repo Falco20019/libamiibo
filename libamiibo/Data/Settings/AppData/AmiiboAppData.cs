@@ -22,6 +22,7 @@
 
 using System;
 using System.Collections.Generic;
+using LibAmiibo.Data.Settings.AppData.Games;
 using LibAmiibo.Helper;
 
 namespace LibAmiibo.Data.Settings.AppData
@@ -50,6 +51,11 @@ namespace LibAmiibo.Data.Settings.AppData
             get { return NtagHelpers.UInt32FromTag(CryptoBuffer, 0x8A); }
             set { NtagHelpers.UInt32ToTag(CryptoBuffer, 0x8A, value); }
         }
+
+        /// <summary>
+        /// To set the game, use AmiiboTag.InitializeAppData()!
+        /// </summary>
+        public IGame Game => AppDataUtil.GetGameForAmiiboAppData(this);
 
         public AmiiboAppData(ArraySegment<byte> cryptoData, ArraySegment<byte> appData)
         {
