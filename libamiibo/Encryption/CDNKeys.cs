@@ -57,9 +57,30 @@ namespace LibAmiibo.Encryption
                 return null;
             }
 
+            using (var stream = File.OpenRead(path))
+            {
+                return LoadKeys(stream);
+            }
+        }
+
+        public static CDNKeys LoadKeys(byte[] bytes)
+        {
+            if (bytes == null || bytes.Length == 0)
+            {
+                return null;
+            }
+
+            using (var stream = new MemoryStream(bytes))
+            {
+                return LoadKeys(stream);
+            }
+        }
+
+        public static CDNKeys LoadKeys(Stream stream)
+        {
             try
             {
-                using (var reader = new BinaryReader(File.OpenRead(path)))
+                using (var reader = new BinaryReader(stream))
                 {
                     var result = CDNKeys.Unserialize(reader);
 
