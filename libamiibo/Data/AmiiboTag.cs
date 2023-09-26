@@ -27,6 +27,8 @@ using System.Linq;
 using LibAmiibo.Data.Figurine;
 using LibAmiibo.Data.Settings;
 using LibAmiibo.Data.Settings.AppData;
+using LibAmiibo.Data.Settings.AppData.Games;
+using LibAmiibo.Encryption;
 using LibAmiibo.Helper;
 using Org.BouncyCastle.Asn1;
 using Org.BouncyCastle.Asn1.Sec;
@@ -202,7 +204,7 @@ namespace LibAmiibo.Data
         public static AmiiboTag DecryptWithKeys(byte[] data)
         {
             byte[] decryptedData = new byte[NtagHelpers.NFC3D_AMIIBO_SIZE];
-            var amiiboKeys = Files.AmiiboKeys;
+            var amiiboKeys = Keys.AmiiboKeys;
 
             return amiiboKeys != null && amiiboKeys.Unpack(data, decryptedData)
                 ? FromInternalTag(new ArraySegment<byte>(decryptedData))
@@ -212,7 +214,7 @@ namespace LibAmiibo.Data
         public byte[] EncryptWithKeys()
         {
             byte[] encryptedData = new byte[NtagHelpers.NFC3D_NTAG_SIZE];
-            var amiiboKeys = Files.AmiiboKeys;
+            var amiiboKeys = Keys.AmiiboKeys;
 
             if (amiiboKeys == null)
                 return null;

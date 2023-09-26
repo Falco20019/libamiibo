@@ -20,12 +20,13 @@
  * THE SOFTWARE.
  */
 
+using LibAmiibo.Data.Settings.AppData;
+using LibAmiibo.Data.Settings.AppData.TitleID;
+using LibAmiibo.Encryption;
+using System;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System;
-using LibAmiibo.Data.Settings.AppData;
-using LibAmiibo.Data.Settings.AppData.TitleID;
 
 namespace LibAmiibo.Helper
 {
@@ -39,7 +40,7 @@ namespace LibAmiibo.Helper
 
         public static byte[] DownloadTitleDataStream(Title title)
         {
-            var cdnKeys = Files.CDNKeys;
+            var cdnKeys = Keys.CDNKeys;
             if (cdnKeys == null)
             {
                 Console.Error.WriteLine("CDNKeys missing");
@@ -85,7 +86,7 @@ namespace LibAmiibo.Helper
         private static byte[] GetCachedStreamData(Title title)
         {
             var titleId = title.TitleID.ToString("X16").ToUpper();
-            var cacheFileName = Path.Combine(Settings.Default["TitleCacheDir"], titleId);
+            var cacheFileName = Path.Combine(Settings.TitleCacheDir, titleId);
             if (File.Exists(cacheFileName))
             {
                 try
