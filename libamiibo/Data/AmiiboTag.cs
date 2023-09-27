@@ -68,23 +68,6 @@ namespace LibAmiibo.Data
         };
 
         /// <summary>
-        /// The data placed at hex offset 0x208 of a blank NTAG215.
-        /// </summary>
-        private static readonly byte[] tagFooter = new byte[] { 
-            // Dynamic lock bytes
-            0x01, 0x00, 0x0F,
-                
-            // RFUI
-            0xBD,
-                
-            // CFG0
-            0x00, 0x00, 0x00, 0x04,
-                
-            // CFG1
-            0x5F, 0x00, 0x00, 0x00
-        };
-
-        /// <summary>
         /// 
         /// This can be an encrypted tag converted with NtagHelpers.GetInternalTag() or an decrypted tag
         /// unpacked with Nfc3DAmiiboKeys.Unpack()
@@ -319,7 +302,7 @@ namespace LibAmiibo.Data
             salt.CopyTo(decryptedNtag, 0x60);
 
             // Copy the tag footer to the tag byte array.
-            tagFooter.CopyTo(decryptedNtag, 0x208);
+            NtagHelpers.CONFIG_BYTES.CopyTo(decryptedNtag, 0x208);
 
             // Create an AmiiboTag from the decrypted data.
             var tag = AmiiboTag.FromNtagData(decryptedNtag);
