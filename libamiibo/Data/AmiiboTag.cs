@@ -20,10 +20,6 @@
  * THE SOFTWARE.
  */
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using LibAmiibo.Data.Figurine;
 using LibAmiibo.Data.Settings;
 using LibAmiibo.Data.Settings.AppData;
@@ -35,12 +31,59 @@ using Org.BouncyCastle.Asn1.Sec;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
-using LibAmiibo.Data.Settings.AppData.Games;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace LibAmiibo.Data
 {
     public class AmiiboTag
     {
+        /// <summary>
+        /// The data placed at the start of a blank NTAG215.
+        /// </summary>
+        private static readonly byte[] tagHeader = new byte[] { 
+            // Tag serial number
+            0x04, 0x01, 0x02, 0x8F, 0x03, 0x04, 0x05, 0x06, 0x04, 
+
+            // Internal value
+            0x48, 
+
+            // Lock bytes
+            0x0F, 0xE0, 
+            
+            // Capability container
+            0xF1, 0x10, 0xFF, 0xEE,
+
+            // Amiibo magic
+            0xA5, 
+
+            // Write counter
+            0x00, 0x00,
+
+            // Figure version (always 0x00)
+            0x00
+        };
+
+        /// <summary>
+        /// The data placed at hex offset 0x208 of a blank NTAG215.
+        /// </summary>
+        private static readonly byte[] tagFooter = new byte[] { 
+            // Dynamic lock bytes
+            0x01, 0x00, 0x0F,
+                
+            // RFUI
+            0xBD,
+                
+            // CFG0
+            0x00, 0x00, 0x00, 0x04,
+                
+            // CFG1
+            0x5F, 0x00, 0x00, 0x00
+        };
+
         /// <summary>
         /// 
         /// This can be an encrypted tag converted with NtagHelpers.GetInternalTag() or an decrypted tag
@@ -199,6 +242,94 @@ namespace LibAmiibo.Data
         public static AmiiboTag FromInternalTag(ArraySegment<byte> data)
         {
             return new AmiiboTag(data) { IsDecrypted = true };
+        }
+
+        /// <summary>
+        /// Creates an AmiiboTag instance from an identification block represented as a hexadecimal string.
+        /// </summary>
+        /// <param name="identificationBlock">The identification block as a hexadecimal string.</param>
+        /// <returns>An AmiiboTag instance representing the identification block.</returns>
+        public static AmiiboTag FromIdentificationBlock(string identificationBlock)
+        {
+            // Create a regular expression object to match a 16-character hexadecimal string..
+            Regex regex = new Regex(@"^(?:0x)?([0-9A-Fa-f]{16})$");
+
+            // Match the input identification block against the regular expression.
+            Match match = regex.Match(identificationBlock);
+
+            if (match.Success)
+            {
+                // The captured group at index 1 contains the hexadecimal value.
+                string hexadecimalValue = match.Groups[1].Value;
+
+                // Call the method to create an AmiiboTag from a byte array.
+                return FromIdentificationBlock(ByteHelpers.StringToByteArray(hexadecimalValue));
+            }
+            else
+            {
+                // The input identification block does not match the expected format.
+                throw new ArgumentException(nameof(identificationBlock));
+            }
+        }
+
+        /// <summary>
+        /// Creates an AmiiboTag instance from an identification block represented as a byte array.
+        /// </summary>
+        /// <param name="identificationBlock">The identification block as a byte array.</param>
+        /// <returns>An AmiiboTag instance representing the identification block.</returns>
+        public static AmiiboTag FromIdentificationBlock(byte[] identificationBlock)
+        {
+            // Check if the identification block byte array is null.
+            if (identificationBlock == null)
+            {
+                throw new ArgumentNullException(nameof(identificationBlock));
+            }
+
+            // Check that the identification block byte array has a length of 8 bytes.
+            if (identificationBlock.Length != 8)
+            {
+                throw new ArgumentOutOfRangeException(nameof(identificationBlock));
+            }
+
+            // Check that the format version of the identification block is equal to 0x02.
+            if (identificationBlock[7] != 0x02)
+            {
+                throw new ArgumentException(nameof(identificationBlock));
+            }
+
+            // Create a new byte array to hold decrypted tag data.
+            var decryptedNtag = new byte[540];
+
+            // Copy the tag header to the byte array.
+            tagHeader.CopyTo(decryptedNtag, 0x00);
+
+            // Copy the identification block to the tag byte array.
+            identificationBlock.CopyTo(decryptedNtag, 0x54);
+
+            // Initialize a new 32-byte array to store a random salt for the tag.
+            var salt = new byte[32];
+
+            // Initialize a random number generator.
+            var rnd = new Random();
+
+            // Fill the salt byte array with random values.
+            rnd.NextBytes(salt);
+
+            // Copy the salt to the tag byte array
+            salt.CopyTo(decryptedNtag, 0x60);
+
+            // Copy the tag footer to the tag byte array.
+            tagFooter.CopyTo(decryptedNtag, 0x208);
+
+            // Create an AmiiboTag from the decrypted data.
+            var tag = AmiiboTag.FromNtagData(decryptedNtag);
+
+            // Set the IsDecrypted property to true and randomize the UID.
+            tag.IsDecrypted = true;
+            tag.RandomizeUID();
+
+            // Return the tag.
+            return tag;
         }
 
         public static AmiiboTag DecryptWithKeys(byte[] data)
